@@ -7,42 +7,57 @@ const Deposit = Schema.Deposit
 
 
 
-// User.remove({}, err => {
-// 	if(err){
-// 		console.log(err)
-// 	}
-// });
+User.remove({}, err => {
+	if(err){
+		console.log(err)
+	}
+});
 
-// Account.remove({}, err => {
-// 	if(err){
-// 		console.log(err)
-// 	}
-// });
+Account.remove({}, err => {
+	if(err){
+		console.log(err)
+	}
+});
 
-// Withdrawal.remove({}, err => {
-// 	if(err){
-// 		console.log(err)
-// 	}
-// });
+Withdrawal.remove({}, err => {
+	if(err){
+		console.log(err)
+	}
+});
 
-// Deposit.remove({}, err => {
-// 	if(err){
-// 		console.log(err)
-// 	}
-// });
+Deposit.remove({}, err => {
+	if(err){
+		console.log(err)
+	}
+});
 
 const may_mortgage = new Withdrawal({name: "May mortgage", amount: 500})
 const wegmans = new Withdrawal({name: "Wegmans run", amount: 50})
+const suitcase = new Withdrawal({name: "Suitcase", amount: 50})
+const petfood = new Withdrawal({name: "Pet food", amount: 10})
+const treats = new Withdrawal({name: "Pet treats", amount: 5})
+
 const deposit1 = new Deposit({name: "Paycheck", amount: 100})
 const deposit2 = new Deposit({name: "Paycheck", amount: 100})
-const mortgage = new Account({name: "Mortgage", goal_amount: 500, current_amount: 0, goal_date: "June 30", withdrawals: [may_mortgage], deposits: [deposit1]})
-const groceries = new Account({name: "Groceries", goal_amount: 100, current_amount: 0, goal_date: "June 30", withdrawals: [wegmans], deposits: [deposit2]})
-const caroline = new User({name: "Caroline", current_funds: 0, accounts: [mortgage, groceries]})
+const deposit3 = new Deposit({name: "Birthday Money", amount: 75})
+const deposit4 = new Deposit({name: "Paycheck", amount: 10})
 
-caroline.save((err, user) => {
-	if(err){
+const mortgage = new Account({name: "Mortgage", goal_amount: 500, current_amount: 0, goal_date: "2017-06-30", withdrawals: [may_mortgage], deposits: [deposit1]})
+const groceries = new Account({name: "Groceries", goal_amount: 100, current_amount: 0, goal_date: "2017-06-30", withdrawals: [wegmans], deposits: [deposit2]})
+const vacation = new Account({name: "Vacation", goal_amount: 800, current_amount: 20, goal_date: "2017-08-30", withdrawals: [suitcase], deposits: [deposit1, deposit3]})
+const pets = new Account({name: "Pets", goal_amount: 25, current_amount: 5, goal_date: "2017-07-31", withdrawals: [petfood, treats], deposits: [deposit4]})
+
+const caroline = new User({name: "Caroline", current_funds: 0, accounts: [mortgage, groceries, pets]})
+const whitney = new User({name: "Whitney", current_funds: 10, accounts: [vacation, groceries]})
+
+const users = [caroline, whitney]
+
+users.forEach((user, i) => {
+	user.save((err, user) => {
+		if(err){
 		console.log(err)
-	} else {
+		} else {
 		console.log(user + "was saved to the db")
-	}
+		}
+	})
 })

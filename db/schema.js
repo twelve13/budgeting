@@ -27,7 +27,7 @@ const AccountSchema = new mongoose.Schema({
 		name: String,
 		goal_amount:  Number,
 		current_amount: Number,
-		goal_date: String,
+		goal_date: Date,
 		withdrawals: [WithdrawalSchema],
 		deposits: [DepositSchema]
 	});
