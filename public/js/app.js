@@ -42,6 +42,5 @@ angular
 
 	function dashboardControllerFunction ($state, $stateParams, UserFactory) {
 		this.user = UserFactory.get({name: $stateParams.name});
-		this.accounts = this.user.accounts;
 		console.log("inside the dashboardControllerFunction")
 	}
