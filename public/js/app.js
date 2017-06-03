@@ -11,13 +11,23 @@ angular
 	.factory("UserFactory", [
 		"$resource",
 		UserFactoryFunction
-		])
+	])
+	.factory("AccountFactory", [
+		"$resource",
+		AccountFactoryFunction
+	])
 	.controller("DashboardController", [
 		"$state",
 		"$stateParams",
 		"UserFactory",
 		dashboardControllerFunction
 	])
+	.controller("ShowController", [
+	 	"$state",
+	 	"$stateParams",
+	 	"AccountFactory",
+	 	showControllerFunction
+	 ])
 
 
 	function RouterFunction($stateProvider){
@@ -32,6 +42,12 @@ angular
 				controller: "DashboardController",
 				controllerAs: "vm"
 			})
+			.state("show", {
+			 	url: "/users/:name/accounts/:name",
+			 	templateUrl: "/assets/js/ng-views/show.html",
+			 	controller: "ShowController",
+			 	controllerAs: "vm"
+			 })
 	}
 
 	function UserFactoryFunction ($resource) {
@@ -40,8 +56,16 @@ angular
 		});
 	}
 
+	function AccountFactoryFunction ($resource) {
+	 	return $resource("accounts/:name", {}, {
+	 		update: {method: "PUT"}
+	 	});
+	 }
+
 	function dashboardControllerFunction ($state, $stateParams, UserFactory) {
 		this.user = UserFactory.get({name: $stateParams.name});
-		this.accounts = this.user.accounts;
-		console.log("inside the dashboardControllerFunction")
 	}
+
+	function showControllerFunction ($state, $stateParams, AccountFactory) {
+	 	this.account = AccountFactory.get({name: $stateParams.name});
+	 }
