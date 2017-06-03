@@ -7,24 +7,44 @@ angular
 		"$stateProvider",
 		RouterFunction
 	])
+	.factory("UserFactory", [
+		"$resource",
+		UserFactoryFunction
+		])
+	.controller("DashboardController", [
+		"$state",
+		"$stateParams",
+		"UserFactory",
+		dashboardControllerFunction
+	])
 
 
-	function RouterFunction ($stateProvider){
+	function RouterFunction($stateProvider){
 		$stateProvider
-			.state("index", {
-				url: "/",
-				templateUrl: "/assets/js/ng-views/index.html"
+			.state("welcome", {
+				url: "/welcome",
+				templateUrl: "/assets/js/ng-views/welcome.html"
 			})
 			.state("dashboard", {
 				url: "/users/:name",
-				templateUrl: "/assets/js/ng-views/dashboard.html"
+				templateUrl: "/assets/js/ng-views/dashboard.html",
 				controller: "DashboardController",
 				controllerAs: "vm"
 			})
-			.state("show", {
-				url: "/users/:name/accounts/:title",
-				templateUrl: "/assets/js/ng-views/show.html"
-				controller: "ShowController",
-				controllerAs: "vm"
-			})
+			// .state("show", {
+			// 	url: "/users/:name/accounts/:title",
+			// 	templateUrl: "/assets/js/ng-views/show.html"
+			// 	controller: "ShowController",
+			// 	controllerAs: "vm"
+			// })
+	}
+
+	function UserFactoryFunction ($resource) {
+		return $resource("users/:name", {}, {
+			update: {method: "PUT"}
+		});
+	}
+
+	function dashboardControllerFunction ($state, $stateParams, UserFactory) {
+		this.user = UserFactory.get({name: $stateParams.name})
 	}
