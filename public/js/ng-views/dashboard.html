@@ -1,7 +1,12 @@
-<h1>{{vm.user.name}}'s Dashboard"</h1>
+<h1>{{vm.user.name}}'s Dashboard</h1>
 
-<h2>User name: {{vm.user.name}}</h2>
+
 <h3>Current funds: {{vm.user.current_funds}}</h3>
-{{vm.user.accounts[0]}}
-{{vm.user.accounts[1]}}
-{{vm.user.accounts[2]}}
+<div class="account-wrapper">
+<div class="account" data-ng-repeat="account in vm.user.accounts">
+	<p>Account Name: {{account["name"]}}</p>
+	<p>Goal Date: {{account["goal_date"]}}</p>
+	<p>Goal Amount: {{account["goal_amount"]}}</p>
+	<p>Current Amount: {{account["current_amount"]}}</p>
+</div>
+</div>

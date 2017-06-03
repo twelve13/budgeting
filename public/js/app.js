@@ -1,3 +1,4 @@
+console.log("angular app.js")
 angular
 	.module("budgeting", [
 		"ui.router",
@@ -11,6 +12,10 @@ angular
 		"$resource",
 		UserFactoryFunction
 		])
+	// .factory("AccountFactory", [
+	// 	"$resource",
+	// 	AccountFactoryFunction
+	// 	])
 	.controller("DashboardController", [
 		"$state",
 		"$stateParams",
@@ -45,6 +50,16 @@ angular
 		});
 	}
 
+	// function AccountFactoryFunction ($resource) {
+	// 	return $resource("accounts/:name", {}, {
+	// 		update: {method: "PUT"}
+	// 	});
+	// }
+
 	function dashboardControllerFunction ($state, $stateParams, UserFactory) {
-		this.user = UserFactory.get({name: $stateParams.name})
+		this.user = UserFactory.get({name: $stateParams.name});
+		// this.accounts = this.user.accounts;
+		console.log("inside the dashboardControllerFunction")
+		console.log(this.user)
+		// console.log(this.accounts)
 	}

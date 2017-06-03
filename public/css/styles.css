@@ -1,0 +1,8 @@
+.account-wrapper {
+	display: flex;
+}
+
+.account {
+	border: solid black 2px;
+	width: 33%;
+}
