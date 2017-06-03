@@ -19,7 +19,11 @@ app.get("/users/:name", (req, res) => {
 
 
 
-
+app.put("users/:name", (req, res) => {
+	models.User.findOneAndUpdate({current_funds: req.params.current_name}, req.body, {new: true}).then(function(user) {
+		res.json(user);
+	})
+})
 
 
 app.listen(4000, () => {

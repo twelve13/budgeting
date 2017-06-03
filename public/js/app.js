@@ -11,7 +11,7 @@ angular
 	.factory("UserFactory", [
 		"$resource",
 		UserFactoryFunction
-		])
+	])
 	.controller("DashboardController", [
 		"$state",
 		"$stateParams",
@@ -42,5 +42,7 @@ angular
 
 	function dashboardControllerFunction ($state, $stateParams, UserFactory) {
 		this.user = UserFactory.get({name: $stateParams.name});
-		console.log("inside the dashboardControllerFunction")
+		this.update = function(){
+			this.user.$update({current_funds: $stateParams.current_funds})
+		}
 	}
