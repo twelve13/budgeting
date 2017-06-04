@@ -23,7 +23,11 @@ app.get("/users/:name", (req, res) => {
 });
 
 
-
+app.get("/users/:name/accounts/:id", (req, res) => {
+ 	models.Account.findOne(req.params).then(function(account) {
+ 		res.json(acount);
+ 	});
+ });
 
 
 
