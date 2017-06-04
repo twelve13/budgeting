@@ -11,7 +11,12 @@ angular
 	.factory("UserFactory", [
 		"$resource",
 		UserFactoryFunction
-		])
+	])
+	.controller("WelcomeController", [
+		"$state",
+		"UserFactory",
+		welcomeControllerFunction
+	])
 	.controller("DashboardController", [
 		"$state",
 		"$stateParams",
@@ -24,7 +29,9 @@ angular
 		$stateProvider
 			.state("welcome", {
 				url: "/welcome",
-				templateUrl: "/assets/js/ng-views/welcome.html"
+				templateUrl: "/assets/js/ng-views/welcome.html",
+				controller: "WelcomeController",
+				controllerAs: "vm"
 			})
 			.state("dashboard", {
 				url: "/users/:name",
@@ -38,6 +45,10 @@ angular
 		return $resource("users/:name", {}, {
 			update: {method: "PUT"}
 		});
+	}
+
+	function welcomeControllerFunction($state, UserFactory){
+		this.users = UserFactory.query()
 	}
 
 	function dashboardControllerFunction ($state, $stateParams, UserFactory) {

@@ -10,6 +10,11 @@ app.get("/", (req, res) => {
 	//res.send("test");
 });
 
+app.get("/welcome", (req, res) => {
+	models.User.find({}).then(function(users){
+		res.json(users)
+	});
+});
 
 app.get("/users/:name", (req, res) => {
 	models.User.findOne(req.params).then(function(user) {
