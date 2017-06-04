@@ -16,6 +16,11 @@ angular
 		"$resource",
 		AccountFactoryFunction
 	])
+	.controller("WelcomeController", [
+		"$state",
+		"UserFactory",
+		welcomeControllerFunction
+	])
 	.controller("DashboardController", [
 		"$state",
 		"$stateParams",
@@ -34,7 +39,9 @@ angular
 		$stateProvider
 			.state("welcome", {
 				url: "/welcome",
-				templateUrl: "/assets/js/ng-views/welcome.html"
+				templateUrl: "/assets/js/ng-views/welcome.html",
+				controller: "WelcomeController",
+				controllerAs: "vm"
 			})
 			.state("dashboard", {
 				url: "/users/:name",
@@ -62,6 +69,10 @@ angular
 	 	});
 	 }
 
+	function welcomeControllerFunction($state, UserFactory){
+		this.users = UserFactory.query()
+	}
+
 	function dashboardControllerFunction ($state, $stateParams, UserFactory) {
 		this.user = UserFactory.get({name: $stateParams.name});
 	}
@@ -69,3 +80,4 @@ angular
 	function showControllerFunction ($state, $stateParams, AccountFactory) {
 	 	this.account = AccountFactory.get({id: $stateParams.id});
 	 }
+
