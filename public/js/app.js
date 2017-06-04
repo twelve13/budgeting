@@ -43,7 +43,7 @@ angular
 				controllerAs: "vm"
 			})
 			.state("show", {
-			 	url: "/users/:name/accounts/:name",
+			 	url: "/users/:name/accounts/:id",
 			 	templateUrl: "/assets/js/ng-views/show.html",
 			 	controller: "ShowController",
 			 	controllerAs: "vm"
@@ -57,7 +57,7 @@ angular
 	}
 
 	function AccountFactoryFunction ($resource) {
-	 	return $resource("accounts/:name", {}, {
+	 	return $resource("accounts/:id", {}, {
 	 		update: {method: "PUT"}
 	 	});
 	 }
@@ -67,5 +67,5 @@ angular
 	}
 
 	function showControllerFunction ($state, $stateParams, AccountFactory) {
-	 	this.account = AccountFactory.get({name: $stateParams.name});
+	 	this.account = AccountFactory.get({id: $stateParams.id});
 	 }
