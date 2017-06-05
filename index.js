@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 const models = require("./db/schema");
 const path = require("path");
 
+app.use(bodyParser.json({extended: true}));
 app.use("/assets", express.static("public"));
 
 app.get("/", (req, res) => {
@@ -20,7 +22,7 @@ app.get("/users/:name", (req, res) => {
 
 
 app.put("users/:name", (req, res) => {
-	models.User.findOneAndUpdate({current_funds: req.params.current_name}, req.body, {new: true}).then(function(user) {
+	models.User.findOneAndUpdate({current_funds: req.params.current_funds}, req.body, {new: true}).then(function(user) {
 		res.json(user);
 	})
 })
