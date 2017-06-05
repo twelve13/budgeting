@@ -32,9 +32,10 @@ app.get("/users/:name?", (req, res) => {
 //perform a user search first, then use an array iterator to find the correct account from user.accounts
 app.get("/users/:name/accounts/:id", (req, res) => {
 	models.User.findOne({ name: req.params.name }).then(function(user) {
- 		user.accounts.find(function(account){
+ 		let account = user.accounts.find(function(account){
                      account._id === req.params.id
  		});
+ 		res.json(account)
 	});
  });
 
