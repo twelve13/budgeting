@@ -16,10 +16,17 @@ app.get("/welcome", (req, res) => {
 	});
 });
 
-app.get("/users/:name", (req, res) => {
-	models.User.findOne(req.params).then(function(user) {
-		res.json(user);
-	});
+app.get("/users/:name?", (req, res) => {
+	if(req.params.name){
+		models.User.findOne(req.params).then(function(user) {
+			res.json(user);
+		});
+	} else if(!req.params.name){
+		models.User.find({}).then(function(users){
+		res.json(users)
+		});
+	}
+
 });
 
 
