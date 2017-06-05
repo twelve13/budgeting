@@ -64,7 +64,7 @@ angular
 	}
 
 	function AccountFactoryFunction ($resource) {
-	 	return $resource("accounts/:id", {}, {
+	 	return $resource("users/:name/accounts/:id", {}, {
 	 		update: {method: "PUT"}
 	 	});
 	 }
