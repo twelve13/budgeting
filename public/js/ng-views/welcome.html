@@ -1,1 +1,7 @@
-<h1>oh welcome</h1>
+<h1>welcome</h1>
+
+<div ng-repeat="user in vm.users">
+	<p><a ui-sref="dashboard({name: user.name})">{{user.name}}</a></p>
+</div>
+
+
