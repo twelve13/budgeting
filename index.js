@@ -33,7 +33,7 @@ app.get("/users/:name?", (req, res) => {
 app.get("/users/:name/accounts/:id", (req, res) => {
 	models.User.findOne({ name: req.params.name }).then(function(user) {
  		let account = user.accounts.find(function(account){
-                     account._id === req.params.id
+                     return account.id === req.params.id
  		});
  		res.json(account)
 	});
