@@ -31,13 +31,16 @@ app.get("/users/:name?", (req, res) => {
 
 //perform a user search first, then use an array iterator to find the correct account from user.accounts
 app.get("/users/:name/accounts/:id", (req, res) => {
-	var user = models.User.findOne(req.params);
- 	user.accounts.forEach(function(account){models.Account.findOne(req.params).then(function(account) {
- 		res.json(acount);
- 	});
-
- 	});
-
+	models.User.findOne(req.params).then(function(user) {
+ 		user.accounts.forEach(function(account){
+ 			//how to match the account id to the id supplied in the url?
+ 			if (account === (req.params)){
+ 				(function(account) {
+ 					res.json(account);
+ 				});
+			};
+ 		});
+	});
  });
 
 
