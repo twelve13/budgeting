@@ -110,18 +110,10 @@ angular
 		// }
 
 
-		// this.update = function(){
-		// 	this.user.$update({name: $stateParams.name})
-		// }
+		this.update = function(){
+			this.user.$update({name: $stateParams.name})
+		}
 
-	
-		// this.create = function() {
-		// 	console.log("new withdrawal")
-		// 	this.newWithdrawal.$save().then(function(user){
-		// 		$state.go("dashboard", {name: user.name})
-		// 	})
-		// 	console.log(this.newWithdrawal);
-		// }
 	}
 
 	

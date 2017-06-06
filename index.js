@@ -7,6 +7,8 @@ const path = require("path");
 app.use(bodyParser.json({extended: true}));
 app.use("/assets", express.static("public"));
 
+console.log("in index.js")
+
 app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname + "/index.html"));
 	//res.send("test");
@@ -57,8 +59,16 @@ app.post("/users/:name", (req, res) => {
 
 //new withdrawal
 app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
-	models.Withdrawal.create(req.body).then(function(user) {
-		res.json(user);
+	models.User.findOne({name: req.params.name}).then(function(user) {
+		let account = user.accounts.find(function(account) {
+			return account.id === req.params.id}).then(function(account){
+				models.Withdrawal.create(req.body).then(function(withdrawal){
+					user.accounts.withdrawals.push(withdrawal)
+					user.accounts.save(function(withdrawal){
+					res.json(withdrawal)
+					})
+				})
+		})
 	})
 });
 
