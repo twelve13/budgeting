@@ -16,6 +16,10 @@ angular
 		"$resource",
 		AccountFactoryFunction
 	])
+	.factory("WithdrawalFactory", [
+		"$resource",
+		WithdrawalFactoryFunction
+	])
 	.controller("WelcomeController", [
 		"$state",
 		"UserFactory",
@@ -25,6 +29,7 @@ angular
 		"$state",
 		"$stateParams",
 		"UserFactory",
+		"WithdrawalFactory",
 		dashboardControllerFunction
 	])
 	.controller("ShowController", [
@@ -67,17 +72,31 @@ angular
 	 	return $resource("users/:name/accounts/:id", {}, {
 	 		update: {method: "PUT"}
 	 	});
-	 }
+	}
+
+	function WithdrawalFactoryFunction ($resource) {
+		return $resource("users/:name/accounts/:id/withdrawals/:id", {}, {});
+	}
+
 
 	function welcomeControllerFunction($state, UserFactory){
 		this.users = UserFactory.query()
 	}
 
-	function dashboardControllerFunction ($state, $stateParams, UserFactory) {
+	function dashboardControllerFunction ($state, $stateParams, UserFactory, WithdrawalFactory) {
 		this.user = UserFactory.get({name: $stateParams.name});
 
 		this.update = function(){
 			this.user.$update({name: $stateParams.name})
+		}
+
+		this.newWithdrawal = new WithdrawalFactory() 
+		this.create = function() {
+			console.log("new withdrawal")
+			this.newWithdrawal.$save().then(function(user){
+				$state.go("dashboard", {name: user.name})
+			})
+			console.log(this.newWithdrawal);
 		}
 	}
 

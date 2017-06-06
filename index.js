@@ -43,6 +43,12 @@ app.get("/users/:name/accounts/:id", (req, res) => {
  });
 
 
+app.post("/users/:name", (req, res) => {
+	models.Withdrawal.create(req.body).then(function(user) {
+		res.json(user);
+	})
+});
+
 app.put("/users/:name", (req, res) => {
 	models.User.findOneAndUpdate({name: req.params.name}, req.body, {new: true}).then(function(user) {
 		res.json(user);
