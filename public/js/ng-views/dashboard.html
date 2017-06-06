@@ -6,6 +6,17 @@
 </form>
 
 <h3>Current funds: {{vm.user.current_funds}}</h3>
+
+
+
+<h2>new account</h2>
+
+<form ng-submit="vm.create()">
+	<input type="text" ng-model="vm.newAccount.name" placeholder="Account Name">
+	<button type="submit">submit</button>
+</form>
+
+
 <div class="account-wrapper">
 <div class="account" data-ng-repeat="account in vm.user.accounts">
 	<p><a ui-sref="show({name: vm.user.name, id: account._id})">Account Name: {{account["name"]}}</a></p>

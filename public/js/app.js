@@ -81,23 +81,40 @@ angular
 
 	function welcomeControllerFunction($state, UserFactory){
 		this.users = UserFactory.query()
+		this.newUser = new UserFactory()
+		this.create = function() {
+			this.newUser.$save().then(function(user){
+				$state.go("welcome")
+			})
+			console.log(this.newUser)
+		}
+
 	}
 
-	function dashboardControllerFunction ($state, $stateParams, UserFactory, WithdrawalFactory) {
+	function dashboardControllerFunction ($state, $stateParams, UserFactory, AccountFactory, WithdrawalFactory) {
 		this.user = UserFactory.get({name: $stateParams.name});
+		this.newAccount = new AccountFactory();
+		// this.newWithdrawal = new WithdrawalFactory();
+		
+		this.create = function() {
+			this.newAccount.$save().then(function(user){
+				$state.go("dashboard", {name: user.name})
+			})
+		}
+
 
 		this.update = function(){
 			this.user.$update({name: $stateParams.name})
 		}
 
-		this.newWithdrawal = new WithdrawalFactory() 
-		this.create = function() {
-			console.log("new withdrawal")
-			this.newWithdrawal.$save().then(function(user){
-				$state.go("dashboard", {name: user.name})
-			})
-			console.log(this.newWithdrawal);
-		}
+	
+		// this.create = function() {
+		// 	console.log("new withdrawal")
+		// 	this.newWithdrawal.$save().then(function(user){
+		// 		$state.go("dashboard", {name: user.name})
+		// 	})
+		// 	console.log(this.newWithdrawal);
+		// }
 	}
 
 	

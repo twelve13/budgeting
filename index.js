@@ -41,14 +41,28 @@ app.get("/users/:name/accounts/:id", (req, res) => {
  		res.json(account)
 	});
  });
-
-
-app.post("/users/:name", (req, res) => {
-	models.Withdrawal.create(req.body).then(function(user) {
+//new user
+app.post("/welcome", (req, res) => {
+	models.User.create(req.body).then(function(user) {
 		res.json(user);
 	})
 });
 
+//new account
+app.post("/users/:name", (req, res) => {
+	models.Account.create(req.body).then(function(user) {
+		res.json(user);
+	})
+})
+
+//new withdrawal
+// app.post("/users/:name", (req, res) => {
+// 	models.Withdrawal.create(req.body).then(function(user) {
+// 		res.json(user);
+// 	})
+// });
+
+//edit user
 app.put("/users/:name", (req, res) => {
 	models.User.findOneAndUpdate({name: req.params.name}, req.body, {new: true}).then(function(user) {
 		res.json(user);

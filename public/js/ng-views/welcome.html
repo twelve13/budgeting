@@ -4,4 +4,9 @@
 	<p><a ui-sref="dashboard({name: user.name})">{{user.name}}</a></p>
 </div>
 
+<h3>Create New User</h3>
+<form ng-submit="vm.create()">
+	<input type="text" ng-model="vm.newUser.name" placeholder="Enter Name">
+	<button type="submit">submit</button>
+</form>
 
