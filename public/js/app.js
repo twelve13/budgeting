@@ -85,6 +85,5 @@ angular
 
 	function showControllerFunction ($state, $stateParams, AccountFactory) {
 	 	this.account = AccountFactory.get({name: $stateParams.name, id: $stateParams.id});
-	 	console.log(this.account.name);
 	 }
 
