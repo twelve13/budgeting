@@ -29,6 +29,7 @@ angular
 		"$state",
 		"$stateParams",
 		"UserFactory",
+		"AccountFactory",
 		"WithdrawalFactory",
 		dashboardControllerFunction
 	])
@@ -75,7 +76,7 @@ angular
 	}
 
 	function WithdrawalFactoryFunction ($resource) {
-		return $resource("users/:name/accounts/:id/withdrawals/:id", {}, {});
+		return $resource("users/:name/accounts/:account_id/withdrawals/:id", {}, {});
 	}
 
 
@@ -84,28 +85,34 @@ angular
 		this.newUser = new UserFactory()
 		this.create = function() {
 			this.newUser.$save().then(function(user){
-				$state.go("welcome")
+				$state.reload()
 			})
-			console.log(this.newUser)
 		}
 
 	}
 
 	function dashboardControllerFunction ($state, $stateParams, UserFactory, AccountFactory, WithdrawalFactory) {
 		this.user = UserFactory.get({name: $stateParams.name});
-		this.newAccount = new AccountFactory();
-		// this.newWithdrawal = new WithdrawalFactory();
-		
-		this.create = function() {
-			this.newAccount.$save().then(function(user){
-				$state.go("dashboard", {name: user.name})
+		this.withdraw = function(account) {
+			console.log(this[account.name])
+			let newWithdrawal = new WithdrawalFactory()
+			newWithdrawal.name = this[account.name].newWithdrawal.name
+			newWithdrawal.amount = this[account.name].newWithdrawal.amount
+			newWithdrawal.$save({name: this.user.name, account_id: account._id}).then(function() {
+				$state.reload()
 			})
 		}
+		
+		// this.create = function() {
+		// 	this.newAccount.$save().then(function(user){
+		// 		$state.go("dashboard", {name: user.name})
+		// 	})
+		// }
 
 
-		this.update = function(){
-			this.user.$update({name: $stateParams.name})
-		}
+		// this.update = function(){
+		// 	this.user.$update({name: $stateParams.name})
+		// }
 
 	
 		// this.create = function() {

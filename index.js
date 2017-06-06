@@ -42,7 +42,7 @@ app.get("/users/:name/accounts/:id", (req, res) => {
 	});
  });
 //new user
-app.post("/welcome", (req, res) => {
+app.post("/users", (req, res) => {
 	models.User.create(req.body).then(function(user) {
 		res.json(user);
 	})
@@ -56,11 +56,11 @@ app.post("/users/:name", (req, res) => {
 })
 
 //new withdrawal
-// app.post("/users/:name", (req, res) => {
-// 	models.Withdrawal.create(req.body).then(function(user) {
-// 		res.json(user);
-// 	})
-// });
+app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
+	models.Withdrawal.create(req.body).then(function(user) {
+		res.json(user);
+	})
+});
 
 //edit user
 app.put("/users/:name", (req, res) => {
