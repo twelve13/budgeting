@@ -32,12 +32,6 @@ app.get("/users/:name?", (req, res) => {
 });
 
 
-app.put("users/:name", (req, res) => {
-	models.User.findOneAndUpdate({current_funds: req.params.current_funds}, req.body, {new: true}).then(function(user) {
-		res.json(user);
-	})
-})
-
 //perform a user search first, then use an array iterator to find the correct account from user.accounts
 app.get("/users/:name/accounts/:id", (req, res) => {
 	models.User.findOne({ name: req.params.name }).then(function(user) {
@@ -49,6 +43,11 @@ app.get("/users/:name/accounts/:id", (req, res) => {
  });
 
 
+app.put("/users/:name", (req, res) => {
+	models.User.findOneAndUpdate({name: req.params.name}, req.body, {new: true}).then(function(user) {
+		res.json(user);
+	})
+})
 
 
 app.listen(4000, () => {

@@ -77,11 +77,11 @@ angular
 		this.user = UserFactory.get({name: $stateParams.name});
 
 		this.update = function(){
-			this.user.$update({current_funds: $stateParams.current_funds})
+			this.user.$update({name: $stateParams.name})
 		}
 	}
 
-	}
+	
 
 	function showControllerFunction ($state, $stateParams, AccountFactory) {
 	 	this.account = AccountFactory.get({name: $stateParams.name, id: $stateParams.id});
