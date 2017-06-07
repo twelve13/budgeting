@@ -82,11 +82,11 @@ app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
 		let account = user.accounts.find((account) => {
 			return account.id == req.params.id
 		})
-			let newWithdrawal = new models.Withdrawal({name: req.body.name, amount: req.body.amount})
-			account.withdrawals.push(newWithdrawal)
-			user.save().then(function(user){
-					res.json(user)
-					
+		let newWithdrawal = new models.Withdrawal({name: req.body.name, amount: req.body.amount})
+		account.withdrawals.push(newWithdrawal);
+		account.current_amount = account.current_amount - req.body.amount;
+		user.save().then(function(user){
+			res.json(user)		
 		})
 	})
 });
