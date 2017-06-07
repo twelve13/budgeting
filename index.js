@@ -91,6 +91,21 @@ app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
 	})
 });
 
+//new deposit
+app.post("/users/:name/accounts/:id/deposits", (req, res) => {
+	models.User.findOne({name: req.params.name}).then(function(user) {
+		let account = user.accounts.find((account) => {
+			return account.id == req.params.id
+		})
+		let newDeposit = new models.Deposit({name: req.body.name, amount: req.body.amount})
+		account.deposits.push(newDeposit);
+		account.current_amount = account.current_amount + req.body.amount;
+		user.save().then(function(user){
+			res.json(user)		
+		})
+	})
+});
+
 //edit user
 app.put("/users/:name", (req, res) => {
 	models.User.findOneAndUpdate({name: req.params.name}, req.body, {new: true}).then(function(user) {

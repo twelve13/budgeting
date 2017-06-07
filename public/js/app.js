@@ -20,6 +20,10 @@ angular
 		"$resource",
 		WithdrawalFactoryFunction
 	])
+	.factory("DepositFactory", [
+		"$resource",
+		DepositFactoryFunction
+	])
 	.controller("WelcomeController", [
 		"$state",
 		"UserFactory",
@@ -31,6 +35,7 @@ angular
 		"UserFactory",
 		"AccountFactory",
 		"WithdrawalFactory",
+		"DepositFactory",
 		dashboardControllerFunction
 	])
 	.controller("ShowController", [
@@ -79,6 +84,9 @@ angular
 		return $resource("users/:name/accounts/:account_id/withdrawals/:id", {}, {});
 	}
 
+	function DepositFactoryFunction($resource) {
+		return $resource("users/:name/accounts/:account_id/deposits/:id", {}, {});
+	}
 
 	function welcomeControllerFunction($state, UserFactory){
 		this.users = UserFactory.query()
@@ -91,7 +99,7 @@ angular
 
 	}
 
-	function dashboardControllerFunction ($state, $stateParams, UserFactory, AccountFactory, WithdrawalFactory) {
+	function dashboardControllerFunction ($state, $stateParams, UserFactory, AccountFactory, WithdrawalFactory, DepositFactory) {
 
 		this.user = UserFactory.get({name: $stateParams.name});
 
@@ -142,7 +150,14 @@ angular
 			})
 		}
 
-
+		this.deposit = function(account) {
+			let newDeposit = new DepositFactory()
+			newDeposit.name = this[account.name].newDeposit.name
+			newDeposit.amount = this[account.name].newDeposit.amount
+			newDeposit.$save({name: this.user.name, account_id: account._id}).then(function() {
+				$state.reload()
+			})
+		}
 	
 	}
 
