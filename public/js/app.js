@@ -114,6 +114,12 @@ angular
 			this.user.$update({name: $stateParams.name})
 		}
 
+		this.destroy = function(){
+			this.user.$delete({name: $stateParams.name}).then(function(){
+				$state.go("welcome")
+			})
+		}
+
 	}
 
 	

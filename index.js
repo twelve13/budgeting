@@ -79,6 +79,13 @@ app.put("/users/:name", (req, res) => {
 	})
 })
 
+//delete user
+app.delete("/users/:name", (req, res) => {
+	models.User.findOneAndRemove({name: req.params.name}).then(function(){
+		res.json({success: true})
+	})
+})
+
 
 app.listen(4000, () => {
   console.log("app listening on port 4000");

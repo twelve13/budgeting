@@ -1,9 +1,11 @@
 <h1>{{vm.user.name}}'s Dashboard</h1>
+<button ng-click="vm.destroy()">Delete User</button>
 
 <form ng-submit="vm.update()">
 	<input type="number" ng-model="vm.user.current_funds">
 	<button type="submit">submit</button>
 </form>
+
 
 <h3>Current funds: {{vm.user.current_funds}}</h3>
 
