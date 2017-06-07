@@ -1,3 +1,14 @@
-<h2>show.html - all them withdrawals and deposits</h2>
+<div>account: {{vm.account.name}}</div>
+<h2>withdrawals</h2>
+	<div data-ng-repeat="withdrawal in vm.account.withdrawals">
+		<div>{{withdrawal.name}}</div>
+		<div>{{withdrawal.amount}}</div>
+		<div>{{withdrawal.date}}</div>
+	</div>
 
-<p>account: {{vm.account.name}}</p>
+<h2>deposits</h2>
+	<div data-ng-repeat="deposit in vm.account.deposits">
+		<div>{{deposit.name}}</div>
+		<div>{{deposit.amount}}</div>
+		<div>{{deposit.date}}</div>
+	</div>
