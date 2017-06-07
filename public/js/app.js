@@ -154,10 +154,12 @@ angular
 	function showControllerFunction ($state, $stateParams, AccountFactory) {
 	 	this.account = AccountFactory.get({name: $stateParams.name, id: $stateParams.id});
 
-
-		this.updateAccount = function(){
-
-			this.account.$update({name: $stateParams.name}, {id: $stateParams.id})
+	 	this.destroy = function(){
+		this.account.$delete({name: $stateParams.name, id: $stateParams.id}).then(function(){
+			$state.go("welcome")
+			})
 		}
+
+
 	 }
 
