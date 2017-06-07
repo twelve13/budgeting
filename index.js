@@ -43,6 +43,7 @@ app.get("/users/:name/accounts/:id", (req, res) => {
  		res.json(account)
 	});
  });
+
 //new user
 app.post("/users", (req, res) => {
 	models.User.create(req.body).then(function(user) {
@@ -51,9 +52,15 @@ app.post("/users", (req, res) => {
 });
 
 //new account
-app.post("/users/:name", (req, res) => {
-	models.Account.create(req.body).then(function(user) {
-		res.json(user);
+app.post("/users/:name/accounts", (req, res) => {
+	models.User.findOne({ name: req.params.name }).then(function(user) {
+		models.Account.create(req.body).then(function(account){
+			user.accounts.push(account)
+			user.save(function(user){
+				res.json(account);
+			})
+		
+		})
 	})
 })
 

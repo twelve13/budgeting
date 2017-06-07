@@ -93,6 +93,14 @@ angular
 
 	function dashboardControllerFunction ($state, $stateParams, UserFactory, AccountFactory, WithdrawalFactory) {
 		this.user = UserFactory.get({name: $stateParams.name});
+
+		this.newAccount = new AccountFactory()
+		this.create = function() {
+			this.newAccount.$save({name: this.user.name}).then(function(){
+				$state.reload()
+			})
+		}
+
 		this.withdraw = function(account) {
 			console.log(this[account.name])
 			let newWithdrawal = new WithdrawalFactory()
@@ -102,13 +110,6 @@ angular
 				$state.reload()
 			})
 		}
-		
-		// this.create = function() {
-		// 	this.newAccount.$save().then(function(user){
-		// 		$state.go("dashboard", {name: user.name})
-		// 	})
-		// }
-
 
 		this.update = function(){
 			this.user.$update({name: $stateParams.name})

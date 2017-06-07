@@ -15,6 +15,9 @@
 
 <form ng-submit="vm.create()">
 	<input type="text" ng-model="vm.newAccount.name" placeholder="Account Name">
+	<input type="number" ng-model="vm.newAccount.goal_amount" placeholder="Goal Amount">
+	<input type="number" ng-model="vm.newAccount.current_amount" placeholder="Current Amount">
+	<input type="text" ng-model="vm.newAccount.goal_date" placeholder="Goal Date">
 	<button type="submit">submit</button>
 </form>
 
