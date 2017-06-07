@@ -125,19 +125,7 @@ angular
 			})
 		}
 
-// this.account = AccountFactory.get({name: $stateParams.name, id: $stateParams.id});
-// 		this.updateAccount = function(account){
-			
-// 			console.log("account")
-// 			console.log(account)
-// 			console.log("this.account")
-// 			console.log(this.account)
-// 			console.log("this.user.account")
-// 			console.log(this.user.account)
-// 			console.log("this.user")
-// 			console.log(this.user)
-// 			this.account.$update({name: $stateParams.name})
-// 		}
+
 
 		this.withdraw = function(account) {
 			console.log("this[account.name]")
@@ -165,5 +153,11 @@ angular
 
 	function showControllerFunction ($state, $stateParams, AccountFactory) {
 	 	this.account = AccountFactory.get({name: $stateParams.name, id: $stateParams.id});
+
+
+		this.updateAccount = function(){
+
+			this.account.$update({name: $stateParams.name}, {id: $stateParams.id})
+		}
 	 }
 

@@ -65,16 +65,17 @@ app.post("/users/:name/accounts", (req, res) => {
 })
 
 //edit account
-// app.put("/users/:name/accounts/:id", (req, res) => {
-// 	models.User.findOne({name: req.params.name}).then(function(user) {
-// 		let account = user.accounts.find((account)=> {
-//             return account.id == req.params.id
-//  		})
-//  		models.Account.findOneAndUpdate({name: req.params.name}, req.body, {new: true}).then(function(user) {
-// 		res.json(user);
-// 	})
-// })
-// })
+app.put("/users/:name/accounts/:id", (req, res) => {
+	models.User.findOne({name: req.params.name}).then(function(user) {
+		let account = user.accounts.find((account)=> {
+            return account.id == req.params.id
+ 		})
+ 		account.name = "cheetos";
+ 		user.save().then(function(user) {
+		res.json(user);
+	})
+})
+})
 
 //new withdrawal
 app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
@@ -100,6 +101,7 @@ app.post("/users/:name/accounts/:id/deposits", (req, res) => {
 		let newDeposit = new models.Deposit({name: req.body.name, amount: req.body.amount})
 		account.deposits.push(newDeposit);
 		account.current_amount = account.current_amount + req.body.amount;
+		user.current_funds = user.current_funds - req.body.amount;
 		user.save().then(function(user){
 			res.json(user)		
 		})
