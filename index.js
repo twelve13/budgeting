@@ -85,10 +85,13 @@ app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
 		})
 		let newWithdrawal = new models.Withdrawal({name: req.body.name, amount: req.body.amount})
 		account.withdrawals.push(newWithdrawal);
-		account.current_amount = account.current_amount - req.body.amount;
+
+		if (account.current_amount >= req.body.amount){
+			account.current_amount = account.current_amount - req.body.amount;
 		user.save().then(function(user){
 			res.json(user)		
 		})
+	}
 	})
 });
 
