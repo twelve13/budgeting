@@ -28,8 +28,14 @@
 	<p>Goal Date: {{account["goal_date"]}}</p>
 	<p>Goal Amount: {{account["goal_amount"]}}</p>
 	<p>Current Amount: {{account["current_amount"]}}</p>
+	
+	<h4>Edit Current Amount</h4>
+	<form ng-submit="vm.updateAccount(account)">
+		<input type="number" ng-model="vm[account.name].account.current_amount">
+		<button type="submit">submit</button>
+	</form>
 
-
+<h4>new withdrawals and deposits</h4>
 	<form ng-submit="vm.withdraw(account)">
 		<input type="text" ng-model="vm[account.name].newWithdrawal.name" placeholder="withdrawal for">
 		<input type="number" ng-model="vm[account.name].newWithdrawal.amount" placeholder="amount spent">

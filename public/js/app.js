@@ -92,16 +92,47 @@ angular
 	}
 
 	function dashboardControllerFunction ($state, $stateParams, UserFactory, AccountFactory, WithdrawalFactory) {
+
 		this.user = UserFactory.get({name: $stateParams.name});
+
+		this.update = function(){
+			console.log("this.user is")
+			console.log(this.user)
+			this.user.$update({name: $stateParams.name})
+		}
+
+		this.destroy = function(){
+		this.user.$delete({name: $stateParams.name}).then(function(){
+			$state.go("welcome")
+			})
+		}
+
 
 		this.newAccount = new AccountFactory()
 		this.create = function() {
+			console.log("this.newAccount")
+			console.log(this.newAccount)
 			this.newAccount.$save({name: this.user.name}).then(function(){
 				$state.reload()
 			})
 		}
 
+// this.account = AccountFactory.get({name: $stateParams.name, id: $stateParams.id});
+// 		this.updateAccount = function(account){
+			
+// 			console.log("account")
+// 			console.log(account)
+// 			console.log("this.account")
+// 			console.log(this.account)
+// 			console.log("this.user.account")
+// 			console.log(this.user.account)
+// 			console.log("this.user")
+// 			console.log(this.user)
+// 			this.account.$update({name: $stateParams.name})
+// 		}
+
 		this.withdraw = function(account) {
+			console.log("this[account.name]")
 			console.log(this[account.name])
 			let newWithdrawal = new WithdrawalFactory()
 			newWithdrawal.name = this[account.name].newWithdrawal.name
@@ -111,16 +142,8 @@ angular
 			})
 		}
 
-		this.update = function(){
-			this.user.$update({name: $stateParams.name})
-		}
 
-		this.destroy = function(){
-			this.user.$delete({name: $stateParams.name}).then(function(){
-				$state.go("welcome")
-			})
-		}
-
+	
 	}
 
 	

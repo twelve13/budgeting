@@ -64,17 +64,26 @@ app.post("/users/:name/accounts", (req, res) => {
 	})
 })
 
+//edit account
+// app.put("/users/:name/accounts/:id", (req, res) => {
+// 	models.User.findOne({name: req.params.name}).then(function(user) {
+// 		let account = user.accounts.find(function(account){
+//             return account.id === req.params.id
+//  		});
+//  		res.json(account)
+// 	})
+// })
+
 //new withdrawal
 app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
 	models.User.findOne({name: req.params.name}).then(function(user) {
-		let account = user.accounts.find(function(account) {
-			return account.id === req.params.id}).then(function(account){
-				models.Withdrawal.create(req.body).then(function(withdrawal){
-					user.accounts.withdrawals.push(withdrawal)
-					user.save(function(){
-					res.json(withdrawal)
-					})
-				})
+		let account = user.accounts.find((account) => {
+			return account.id == req.params.id
+		})
+			account.withdrawals.push({name: req.body.name, amount: req.body.amount})
+			user.save().then(function(user){
+					res.json(user)
+					
 		})
 	})
 });
