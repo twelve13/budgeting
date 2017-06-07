@@ -67,11 +67,13 @@ app.post("/users/:name/accounts", (req, res) => {
 //edit account
 // app.put("/users/:name/accounts/:id", (req, res) => {
 // 	models.User.findOne({name: req.params.name}).then(function(user) {
-// 		let account = user.accounts.find(function(account){
-//             return account.id === req.params.id
-//  		});
-//  		res.json(account)
+// 		let account = user.accounts.find((account)=> {
+//             return account.id == req.params.id
+//  		})
+//  		models.Account.findOneAndUpdate({name: req.params.name}, req.body, {new: true}).then(function(user) {
+// 		res.json(user);
 // 	})
+// })
 // })
 
 //new withdrawal
