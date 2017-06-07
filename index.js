@@ -56,7 +56,7 @@ app.post("/users/:name/accounts", (req, res) => {
 	models.User.findOne({ name: req.params.name }).then(function(user) {
 		models.Account.create(req.body).then(function(account){
 			user.accounts.push(account)
-			user.save(function(user){
+			user.save(function(){
 				res.json(account);
 			})
 		
@@ -71,7 +71,7 @@ app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
 			return account.id === req.params.id}).then(function(account){
 				models.Withdrawal.create(req.body).then(function(withdrawal){
 					user.accounts.withdrawals.push(withdrawal)
-					user.accounts.save(function(withdrawal){
+					user.save(function(){
 					res.json(withdrawal)
 					})
 				})
