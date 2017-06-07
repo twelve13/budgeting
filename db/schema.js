@@ -35,6 +35,7 @@ const AccountSchema = new mongoose.Schema({
 const UserSchema = new mongoose.Schema({
 		name: String,
 		current_funds: Number,
+		source: String,
 		accounts: [AccountSchema]
 	});
 

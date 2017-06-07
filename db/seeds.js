@@ -47,8 +47,8 @@ const groceries = new Account({name: "Groceries", goal_amount: 100, current_amou
 const vacation = new Account({name: "Vacation", goal_amount: 800, current_amount: 20, goal_date: "2017-08-30", withdrawals: [suitcase], deposits: [deposit1, deposit3]})
 const pets = new Account({name: "Pets", goal_amount: 25, current_amount: 5, goal_date: "2017-07-31", withdrawals: [petfood, treats], deposits: [deposit4]})
 
-const caroline = new User({name: "Caroline", current_funds: 0, accounts: [mortgage, groceries, pets]})
-const whitney = new User({name: "Whitney", current_funds: 10, accounts: [vacation, groceries]})
+const caroline = new User({name: "Caroline", current_funds: 0, source: "paycheck", accounts: [mortgage, groceries, pets]})
+const whitney = new User({name: "Whitney", current_funds: 10, source: "paycheck", accounts: [vacation, groceries]})
 
 const users = [caroline, whitney]
 

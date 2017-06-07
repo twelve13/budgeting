@@ -98,7 +98,7 @@ app.post("/users/:name/accounts/:id/deposits", (req, res) => {
 		let account = user.accounts.find((account) => {
 			return account.id == req.params.id
 		})
-		let newDeposit = new models.Deposit({name: req.body.name, amount: req.body.amount})
+		let newDeposit = new models.Deposit({name: user.source, amount: req.body.amount})
 		account.deposits.push(newDeposit);
 		account.current_amount = account.current_amount + req.body.amount;
 		user.current_funds = user.current_funds - req.body.amount;
