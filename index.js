@@ -8,11 +8,6 @@ app.use(bodyParser.json({extended: true}));
 app.use("/assets", express.static("public"));
 
 
-//connect to angular
-app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname + "/index.html"));
-});
-
 app.get("/api/welcome", (req, res) => {
 	req.flash("info", "welcome");
 	models.User.find({}).then(function(users){
@@ -147,6 +142,10 @@ app.post("/api/users/:name/accounts/:id/deposits", (req, res) => {
 	});
 });
 
+//connect to angular
+app.get("/*", (req, res) => {
+	res.sendFile(path.join(__dirname + "/index.html"));
+});
 
 
 app.listen(4000, () => {
