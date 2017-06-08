@@ -72,7 +72,7 @@ app.delete("/users/:name/accounts/:id", (req, res) => {
 			return account.id == req.params.id
 		})
 		for(let i=0; i < user.accounts.length; i++){
-			if(user.accounts.id[i]== account.id){
+			if(user.accounts[i].id == account.id){
 				user.accounts.splice(user.accounts[i], 1)
 			}
 		}
