@@ -56,26 +56,33 @@ app.post("/users/:name/accounts", (req, res) => {
 	models.User.findOne({ name: req.params.name }).then(function(user) {
 		models.Account.create(req.body).then(function(account){
 			user.accounts.push(account)
-			user.save(function(){
-				res.json(account);
+			user.save().then(function(user){
+				res.json(user);
 			})
 		
 		})
 	})
 })
 
-//edit account
-app.put("/users/:name/accounts/:id", (req, res) => {
-	models.User.findOne({name: req.params.name}).then(function(user) {
-		let account = user.accounts.find((account)=> {
-            return account.id == req.params.id
- 		})
- 		account.name = "cheetos";
- 		user.save().then(function(user) {
-		res.json(user);
+
+//delete account
+app.delete("/users/:name/accounts/:id", (req, res) => {
+	models.User.findOne({name: req.params.name}).then(function(user){
+		let account = user.accounts.find((account) => {
+			return account.id == req.params.id
+		})
+		for(let i=0; i < user.accounts.length; i++){
+			if(user.accounts[i].id == account.id){
+				user.accounts.splice(user.accounts[i], 1)
+			}
+		}
+		user.current_funds = user.current_funds + account.current_amount;
+		user.save().then(function(){
+				res.json({success: true})
+			})
 	})
 })
-})
+
 
 //new withdrawal
 app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
