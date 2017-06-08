@@ -1,4 +1,5 @@
-console.log("angular app.js")
+"use strict"
+
 angular
 	.module("budgeting", [
 		"ui.router",
@@ -69,24 +70,24 @@ angular
 	}
 
 	function UserFactoryFunction ($resource) {
-		return $resource("users/:name", {}, {
+		return $resource("/api/users/:name", {}, {
 			update: {method: "PUT"}
 		})
 	}
 
 	function AccountFactoryFunction ($resource) {
-	 	return $resource("users/:name/accounts/:id", {}, {
+	 	return $resource("/api/users/:name/accounts/:id", {}, {
 	 		update: {method: "PUT"}
 	 	})
 	}
 
 	function WithdrawalFactoryFunction ($resource) {
-		return $resource("users/:name/accounts/:account_id/withdrawals/:id", {}, {
+		return $resource("/api/users/:name/accounts/:account_id/withdrawals/:id", {}, {
 		})
 	}
 
 	function DepositFactoryFunction($resource) {
-		return $resource("users/:name/accounts/:account_id/deposits/:id", {}, {});
+		return $resource("/api/users/:name/accounts/:account_id/deposits/:id", {}, {});
 	}
 
 	function welcomeControllerFunction($state, UserFactory){

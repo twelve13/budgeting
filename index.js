@@ -8,11 +8,12 @@ app.use(bodyParser.json({extended: true}));
 app.use("/assets", express.static("public"));
 
 
+//connect to angular
 app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname + "/index.html"));
 });
 
-app.get("/welcome", (req, res) => {
+app.get("/api/welcome", (req, res) => {
 	req.flash("info", "welcome");
 	models.User.find({}).then(function(users){
 		res.json(users)
@@ -21,7 +22,7 @@ app.get("/welcome", (req, res) => {
 
 //to make the named param optional, need to add a ?.  
 //then use if statement to switch between using models.User.findOne() or models.User.find() depending on if req.params.name is set or undefined
-app.get("/users/:name?", (req, res) => {
+app.get("/api/users/:name?", (req, res) => {
 	if(req.params.name){
 		models.User.findOne(req.params).then(function(user) {
 			res.json(user);
@@ -34,21 +35,21 @@ app.get("/users/:name?", (req, res) => {
 });
 
 //new user
-app.post("/users", (req, res) => {
+app.post("/api/users", (req, res) => {
 	models.User.create(req.body).then(function(user) {
 		res.json(user);
 	});
 });
 
 //edit user
-app.put("/users/:name", (req, res) => {
+app.put("/api/users/:name", (req, res) => {
 	models.User.findOneAndUpdate({name: req.params.name}, req.body, {new: true}).then(function(user) {
 		res.json(user);
 	});
 });
 
 //delete user
-app.delete("/users/:name", (req, res) => {
+app.delete("/api/users/:name", (req, res) => {
 	models.User.findOneAndRemove({name: req.params.name}).then(function(){
 		res.json({success: true})
 	});
@@ -56,7 +57,7 @@ app.delete("/users/:name", (req, res) => {
 
 //to show a particular account
 //perform a user search first, then use an array iterator to find the correct account from user.accounts
-app.get("/users/:name/accounts/:id", (req, res) => {
+app.get("/api/users/:name/accounts/:id", (req, res) => {
 	models.User.findOne({ name: req.params.name }).then(function(user) {
  		let account = user.accounts.find(function(account){
                      return account.id === req.params.id
@@ -66,7 +67,7 @@ app.get("/users/:name/accounts/:id", (req, res) => {
  });
 
 //new account
-app.post("/users/:name/accounts", (req, res) => {
+app.post("/api/users/:name/accounts", (req, res) => {
 	models.User.findOne({ name: req.params.name }).then(function(user) {
 		models.Account.create(req.body).then(function(account){
 			user.accounts.push(account)
@@ -79,7 +80,7 @@ app.post("/users/:name/accounts", (req, res) => {
 
 //delete account
 //find the user, then the account.  loop through user's accounts to find that account, then splice it out and save the user
-app.delete("/users/:name/accounts/:id", (req, res) => {
+app.delete("/api/users/:name/accounts/:id", (req, res) => {
 	models.User.findOne({name: req.params.name}).then(function(user){
 		let account = user.accounts.find((account) => {
 			return account.id == req.params.id
@@ -100,7 +101,7 @@ app.delete("/users/:name/accounts/:id", (req, res) => {
 //find the user then find the account  create a new withdrawal.  
 //if there's enough to cover the withdrawal, add the withdrawal to the account and subtract from the account's current amount
 //if there isn't enough, don't save the withdrawal, don't subtract, and show the error message
-app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
+app.post("/api/users/:name/accounts/:id/withdrawals", (req, res) => {
 	models.User.findOne({name: req.params.name}).then(function(user) {
 		let account = user.accounts.find((account) => {
 			return account.id == req.params.id
@@ -123,7 +124,7 @@ app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
 });
 
 //new deposit - same setup but opposite math of new withdrawal
-app.post("/users/:name/accounts/:id/deposits", (req, res) => {
+app.post("/api/users/:name/accounts/:id/deposits", (req, res) => {
 	models.User.findOne({name: req.params.name}).then(function(user) {
 		let account = user.accounts.find((account) => {
 			return account.id == req.params.id
