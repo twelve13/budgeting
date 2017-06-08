@@ -9,16 +9,17 @@
 		
 		<button type="submit">submit</button>
 	</form> -->
+<div class="searchbar"><p>Search</p> <input type="text" ng-model="vm.search"></div>
 
 <h2>withdrawals</h2>
-	<div data-ng-repeat="withdrawal in vm.account.withdrawals">
+	<div data-ng-repeat="withdrawal in vm.account.withdrawals | filter: {name: vm.search}">
 		<div>{{withdrawal.name}}</div>
 		<div>{{withdrawal.amount}}</div>
 		<div>{{withdrawal.date}}</div>
 	</div>
 
 <h2>deposits</h2>
-	<div data-ng-repeat="deposit in vm.account.deposits">
+	<div data-ng-repeat="deposit in vm.account.deposits | filter: {name: vm.search}">
 		<div>{{deposit.name}}</div>
 		<div>{{deposit.amount}}</div>
 		<div>{{deposit.date}}</div>
