@@ -42,6 +42,7 @@ angular
 	.controller("ShowController", [
 	 	"$state",
 	 	"$stateParams",
+	 	"UserFactory",
 	 	"AccountFactory",
 	 	showControllerFunction
 	 ])
@@ -145,7 +146,8 @@ angular
 	}
 	
 
-	function showControllerFunction ($state, $stateParams, AccountFactory) {
+	function showControllerFunction ($state, $stateParams, UserFactory, AccountFactory) {
+		this.user = UserFactory.get({name: $stateParams.name});
 	 	this.account = AccountFactory.get({name: $stateParams.name, id: $stateParams.id});
 	 	this.destroy = function(){
 		this.account.$delete({name: $stateParams.name, id: $stateParams.id}).then(function(){
