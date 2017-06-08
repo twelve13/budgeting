@@ -1,28 +1,26 @@
-<p><a ui-sref="welcome">&lt&ltHome</a></p>
-<div class="header-wrapper">
-<div>{{vm.user.name}}'s Dashboard</div>
-<button ng-click="vm.destroy()">Delete User</button>
+<div class="nav">
+	<p><a ui-sref="welcome">&lt&ltHome</a></p>
+	<button ng-click="vm.destroy()">Delete User</button>
 </div>
-<form ng-submit="vm.update()">
+
+<div class="users-dashboard">{{vm.user.name}}'s Dashboard</div>
+
+<div class="current-funds-display">
+	<div>Cash to cache: {{vm.user.current_funds}}</div>
+	<div>From: {{vm.user.source}}</div>
+</div>
+
+<form class="edit-current-funds" ng-submit="vm.update()">
 	<p>current funds</p><input type="number" ng-model="vm.user.current_funds">
 	<p>from</p><input type="text" ng-model="vm.user.source">
 	<button type="submit">submit</button>
 </form>
 
 
-<h3>Current funds: {{vm.user.current_funds}}</h3>
-<h3>from: {{vm.user.source}}</h3>
 
 
-<h2>new account</h2>
 
-<form ng-submit="vm.create()">
-	<input type="text" ng-model="vm.newAccount.name" placeholder="Account Name">
-	<input type="number" ng-model="vm.newAccount.goal_amount" placeholder="Goal Amount">
-	<input type="number" ng-model="vm.newAccount.current_amount" placeholder="Current Amount">
-	<input type="text" ng-model="vm.newAccount.goal_date" placeholder="Goal Date">
-	<button type="submit">submit</button>
-</form>
+
 
 
 <div class="account-wrapper">
@@ -49,5 +47,14 @@
 	<p>Status: {{account["status"]}}</p>
 </div>
 </div>
+<h2>new account</h2>
+
+<form ng-submit="vm.create()">
+	<input type="text" ng-model="vm.newAccount.name" placeholder="Account Name">
+	<input type="number" ng-model="vm.newAccount.goal_amount" placeholder="Goal Amount">
+	<input type="number" ng-model="vm.newAccount.current_amount" placeholder="Current Amount">
+	<input type="text" ng-model="vm.newAccount.goal_date" placeholder="Goal Date">
+	<button type="submit">submit</button>
+</form>
 
 

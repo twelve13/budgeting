@@ -33,6 +33,31 @@
 	width: 10%;
 }
 
+.nav {
+	display: flex;
+	justify-content: space-between;
+}
+
+.users-dashboard {
+	font-size: 300%;
+	text-align: center;
+}
+
+.current-funds-display {
+	display: flex;
+	font-size: 200%;
+	justify-content: center;
+	margin: 2% 0;
+}
+
+.current-funds-display * {
+	margin: 0 2%;
+}
+
+.edit-current-funds {
+	display: flex;
+	justify-content: center;
+}
 
 .account-wrapper {
 	display: flex;
