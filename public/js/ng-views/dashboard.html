@@ -1,8 +1,8 @@
 <p><a ui-sref="welcome">&lt&ltHome</a></p>
-
-<h1>{{vm.user.name}}'s Dashboard</h1>
+<div class="header-wrapper">
+<div>{{vm.user.name}}'s Dashboard</div>
 <button ng-click="vm.destroy()">Delete User</button>
-
+</div>
 <form ng-submit="vm.update()">
 	<p>current funds</p><input type="number" ng-model="vm.user.current_funds">
 	<p>from</p><input type="text" ng-model="vm.user.source">
@@ -49,4 +49,5 @@
 	<p>Status: {{account["status"]}}</p>
 </div>
 </div>
+
 
