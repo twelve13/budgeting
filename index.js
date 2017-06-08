@@ -76,8 +76,7 @@ app.delete("/users/:name/accounts/:id", (req, res) => {
 				user.accounts.splice(user.accounts[i], 1)
 			}
 		}
-		// let index = user.accounts.indexOf(account);
-		// user.accounts.splice(index, 1);
+		user.current_funds = user.current_funds + account.current_amount;
 		user.save().then(function(){
 				res.json({success: true})
 			})
