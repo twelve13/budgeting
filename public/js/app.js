@@ -81,7 +81,11 @@ angular
 	}
 
 	function WithdrawalFactoryFunction ($resource) {
-		return $resource("users/:name/accounts/:account_id/withdrawals/:id", {}, {});
+		return $resource("users/:name/accounts/:account_id/withdrawals/:id", {}, {
+			success: function(response){
+				alert("show alert")
+			}
+		});
 	}
 
 	function DepositFactoryFunction($resource) {
@@ -146,6 +150,11 @@ angular
 				$state.reload()
 			})
 		}
+
+		// function(error){
+		// 	if(error.responseText == 'showAlert')
+  //             alert("Please enter correct user name and password.")
+		// }
 	
 	}
 
