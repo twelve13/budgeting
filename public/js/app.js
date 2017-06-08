@@ -71,21 +71,18 @@ angular
 	function UserFactoryFunction ($resource) {
 		return $resource("users/:name", {}, {
 			update: {method: "PUT"}
-		});
+		})
 	}
 
 	function AccountFactoryFunction ($resource) {
 	 	return $resource("users/:name/accounts/:id", {}, {
 	 		update: {method: "PUT"}
-	 	});
+	 	})
 	}
 
 	function WithdrawalFactoryFunction ($resource) {
 		return $resource("users/:name/accounts/:account_id/withdrawals/:id", {}, {
-			success: function(response){
-				alert("show alert")
-			}
-		});
+		})
 	}
 
 	function DepositFactoryFunction($resource) {
@@ -108,8 +105,6 @@ angular
 		this.user = UserFactory.get({name: $stateParams.name});
 
 		this.update = function(){
-			console.log("this.user is")
-			console.log(this.user)
 			this.user.$update({name: $stateParams.name})
 		}
 
@@ -122,18 +117,13 @@ angular
 
 		this.newAccount = new AccountFactory()
 		this.create = function() {
-			console.log("this.newAccount")
-			console.log(this.newAccount)
 			this.newAccount.$save({name: this.user.name}).then(function(){
 				$state.reload()
 			})
 		}
 
 
-
 		this.withdraw = function(account) {
-			console.log("this[account.name]")
-			console.log(this[account.name])
 			let newWithdrawal = new WithdrawalFactory()
 			newWithdrawal.name = this[account.name].newWithdrawal.name
 			newWithdrawal.amount = this[account.name].newWithdrawal.amount
@@ -151,24 +141,15 @@ angular
 			})
 		}
 
-		// function(error){
-		// 	if(error.responseText == 'showAlert')
-  //             alert("Please enter correct user name and password.")
-		// }
-	
 	}
-
 	
 
 	function showControllerFunction ($state, $stateParams, AccountFactory) {
 	 	this.account = AccountFactory.get({name: $stateParams.name, id: $stateParams.id});
-
 	 	this.destroy = function(){
 		this.account.$delete({name: $stateParams.name, id: $stateParams.id}).then(function(){
 			$state.go("welcome")
 			})
 		}
-
-
 	 }
 
