@@ -5,9 +5,12 @@ angular
 		"ui.router",
 		"ngResource"
 	])
+	//locationProvider enables configuring app to be a true HTML5 SPA, get rid of hashtags in url
+	//urlRouterProvider enables redirecting any request not defined in app's states to a default state
 	.config([
 		"$stateProvider",
 		"$locationProvider",
+		"$urlRouterProvider",
 		RouterFunction
 	])
 	.factory("UserFactory", [
@@ -49,7 +52,7 @@ angular
 	 ])
 
 
-	function RouterFunction($stateProvider, $locationProvider){
+	function RouterFunction($stateProvider, $locationProvider, $urlRouterProvider){
 		$locationProvider.html5Mode(true)
 		$stateProvider
 			.state("welcome", {
@@ -70,6 +73,7 @@ angular
 			 	controller: "ShowController",
 			 	controllerAs: "vm"
 			 })
+			$urlRouterProvider.otherwise("/welcome")
 	}
 
 	function UserFactoryFunction ($resource) {
