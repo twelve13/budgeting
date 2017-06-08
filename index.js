@@ -84,15 +84,21 @@ app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
 			return account.id == req.params.id
 		})
 		let newWithdrawal = new models.Withdrawal({name: req.body.name, amount: req.body.amount})
-		account.withdrawals.push(newWithdrawal);
+		
 
 		if (account.current_amount >= req.body.amount){
+			account.withdrawals.push(newWithdrawal);
+
 			account.current_amount = account.current_amount - req.body.amount;
+			account.status = "all good";
 		user.save().then(function(user){
 			res.json(user)		
 		})
 	} else {
-		res.send("nope");
+		account.status="ALERT: INSUFFICIENT FUNDS IN ACCOUNT";
+		user.save().then(function(user){
+			res.json(user)		
+		})
 	}
 	})
 });
@@ -104,12 +110,21 @@ app.post("/users/:name/accounts/:id/deposits", (req, res) => {
 			return account.id == req.params.id
 		})
 		let newDeposit = new models.Deposit({name: user.source, amount: req.body.amount})
+
+		if(user.current_funds >= req.body.amount){
 		account.deposits.push(newDeposit);
 		account.current_amount = account.current_amount + req.body.amount;
+		account.status = "all good";
 		user.current_funds = user.current_funds - req.body.amount;
 		user.save().then(function(user){
 			res.json(user)		
 		})
+	} else {
+		account.status="ALERT: EXCEEDS CURRENT FUNDS";
+		user.save().then(function(user){
+			res.json(user)		
+		})
+	}
 	})
 });
 
