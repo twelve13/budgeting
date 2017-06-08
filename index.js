@@ -11,10 +11,10 @@ console.log("in index.js")
 
 app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname + "/index.html"));
-	//res.send("test");
 });
 
 app.get("/welcome", (req, res) => {
+	req.flash("info", "welcome");
 	models.User.find({}).then(function(users){
 		res.json(users)
 	});
@@ -91,6 +91,8 @@ app.post("/users/:name/accounts/:id/withdrawals", (req, res) => {
 		user.save().then(function(user){
 			res.json(user)		
 		})
+	} else {
+		res.send("nope");
 	}
 	})
 });
