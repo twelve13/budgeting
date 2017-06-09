@@ -185,3 +185,8 @@ input {
 	flex-wrap: wrap;
 	justify-content: center;
 }
+
+.account-footer {
+	display: flex;
+	justify-content: space-between;
+}

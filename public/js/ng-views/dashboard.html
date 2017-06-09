@@ -6,58 +6,55 @@
 
 <div class="current-funds-display">
 	<div class="add-cash" ng-click="show = !show">Add Cash</div>
-	<div>Cash to stash: ${{vm.user.current_funds}}</div>
+	<div>Available Cash: ${{vm.user.current_funds}}</div>
 	<div>From: {{vm.user.source}}</div>
-	
 </div>
 
-
-
-	<form class="edit-current-funds" ng-show="show" ng-submit="vm.update()">
+<form class="edit-current-funds" ng-show="show" ng-submit="vm.update()">
 	<p>Amount</p><input type="number" ng-model="vm.user.current_funds">
 	<p>Source</p><input type="text" ng-model="vm.user.source">
 	<button type="submit">submit</button>
-	</form>
-
+</form>
 
 <div class="account-wrapper">
-<div class="account" data-ng-repeat="account in vm.user.accounts">
-	<div class="account-header">
-		<div class="account-name">{{account["name"]}}</div>
-		<div class="goal-and-current">
-			<div class="current">
-		
-			<div>${{account["current_amount"]}}</div>
+	<div class="account" data-ng-repeat="account in vm.user.accounts">
+		<div class="account-header">
+			<div class="account-name">{{account["name"]}}</div>
+			<div class="goal-and-current">
+				<div class="current">
+					<div>${{account["current_amount"]}}</div>
+				</div>
+				<div class="goal">
+					<p>Goal:</p>
+					<div>${{account["goal_amount"]}}</div>
+					<div class="goal-date">by {{account["goal_date"]}}</div>
+				</div>
 			</div>
-			<div class="goal">
-				<p>Goal:</p>
-				<div>${{account["goal_amount"]}}</div>
-				<div class="goal-date">by {{account["goal_date"]}}</div>
+		</div>
+		<div class="new-w-and-d">
+			<div class="new-d">
+				<p>Deposit</p>
+				<form ng-submit="vm.deposit(account)">
+					<input type="number" ng-model="vm[account.name].newDeposit.amount" placeholder="amount received">
+					<button type="submit">submit</button>
+				</form>
 			</div>
-
+			<div class="new-w">
+				<p>Withdrawal</p>
+				<form ng-submit="vm.withdraw(account)">
+					<input type="number" ng-model="vm[account.name].newWithdrawal.amount" placeholder="amount spent">
+					<input type="text" ng-model="vm[account.name].newWithdrawal.name" placeholder="for">
+					<button type="submit">submit</button>
+				</form>
+			</div>
+		</div>
+		<div class="account-footer">
+			<div>Status: {{account["status"]}}</div>
+			<div><a ui-sref="show({name: vm.user.name, id: account._id})">log</a></div>
 		</div>
 	</div>
-<div class="new-w-and-d">
-	<div class="new-d">
-		<p>Deposit</p>
-		<form ng-submit="vm.deposit(account)">
-			<input type="number" ng-model="vm[account.name].newDeposit.amount" placeholder="amount received">
-			<button type="submit">submit</button>
-		</form>
-	</div>
-	<div class="new-w">
-		<p>Withdrawal</p>
-		<form ng-submit="vm.withdraw(account)">
-			<input type="number" ng-model="vm[account.name].newWithdrawal.amount" placeholder="amount spent">
-			<input type="text" ng-model="vm[account.name].newWithdrawal.name" placeholder="for">
-			<button type="submit">submit</button>
-		</form>
-	</div>
 </div>
-	<div><a ui-sref="show({name: vm.user.name, id: account._id})">log</a></div>
-	<p>Status: {{account["status"]}}</p>
-</div>
-</div>
+
 <h2>new account</h2>
 
 <form ng-submit="vm.create()">
