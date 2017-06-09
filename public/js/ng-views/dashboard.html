@@ -53,16 +53,17 @@
 			<div><a ui-sref="show({name: vm.user.name, id: account._id})">log</a></div>
 		</div>
 	</div>
+
+
+<div class="new-account">
+	<p>New Account</p>
+	<form ng-submit="vm.create()">
+		<input type="text" ng-model="vm.newAccount.name" placeholder="Account Name">
+		<input type="number" ng-model="vm.newAccount.current_amount" placeholder="Current Amount">
+		<input type="number" ng-model="vm.newAccount.goal_amount" placeholder="Goal Amount">
+		<input type="text" ng-model="vm.newAccount.goal_date" placeholder="Goal Date">
+		<button type="submit">submit</button>
+	</form>
 </div>
-
-<h2>new account</h2>
-
-<form ng-submit="vm.create()">
-	<input type="text" ng-model="vm.newAccount.name" placeholder="Account Name">
-	<input type="number" ng-model="vm.newAccount.goal_amount" placeholder="Goal Amount">
-	<input type="number" ng-model="vm.newAccount.current_amount" placeholder="Current Amount">
-	<input type="text" ng-model="vm.newAccount.goal_date" placeholder="Goal Date">
-	<button type="submit">submit</button>
-</form>
-
+</div>
 

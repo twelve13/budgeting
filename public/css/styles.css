@@ -111,7 +111,7 @@ input {
 	flex-wrap: wrap;
 }
 
-.account {
+.account, .new-account {
 	border: solid black 2px;
 	border-radius: 10%;
 	box-sizing: border-box;
@@ -120,6 +120,20 @@ input {
 	margin: 1%;
 	padding: 1%;
 	width: 31%;
+}
+
+.new-account {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.new-account * {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 75%;
 }
 
 .account-header {
@@ -190,3 +204,5 @@ input {
 	display: flex;
 	justify-content: space-between;
 }
+
+
