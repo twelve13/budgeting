@@ -237,4 +237,12 @@ input {
 	justify-content: space-around;
 }
 
+.searchbar {
+	display: flex;
+	justify-content: center;
+	margin: 2% 0;
+}
 
+.searchbar :nth-child(2) {
+	width: 30%;
+}
