@@ -1,24 +1,26 @@
-<p><a ui-sref="welcome">to homepage</a></p>
-<p><a ui-sref="dashboard({name: vm.user.name})">Back to accounts</a></p>
-
-<div>account: {{vm.account.name}}</div>
+<div class="nav">
+<div>
+<p><a ui-sref="welcome">&lt&ltHome</a></p>
+<p><a ui-sref="dashboard({name: vm.user.name})">&lt&ltAccounts</a></p>
+</div>
+<div class="users-dashboard">{{vm.account.name}}</div>
 
 <button ng-click="vm.destroy()">Delete Account</button>
-
+</div>
 <div class="searchbar"><p>Search</p> <input type="text" ng-model="vm.search"></div>
 
 
-<h2>withdrawals</h2>
-	<div data-ng-repeat="withdrawal in vm.account.withdrawals | filter: {name: vm.search}">
+<div class="list-title">withdrawals</div>
+	<div class="list-item" data-ng-repeat="withdrawal in vm.account.withdrawals | filter: {name: vm.search}">
 		<div>{{withdrawal.name}}</div>
-		<div>{{withdrawal.amount}}</div>
+		<div>${{withdrawal.amount}}</div>
 		<div>{{withdrawal.date}}</div>
 	</div>
 
-<h2>deposits</h2>
-	<div data-ng-repeat="deposit in vm.account.deposits | filter: {name: vm.search}">
+<div class="list-title">deposits</div>
+	<div class="list-item" data-ng-repeat="deposit in vm.account.deposits | filter: {name: vm.search}">
 		<div>{{deposit.name}}</div>
-		<div>{{deposit.amount}}</div>
+		<div>${{deposit.amount}}</div>
 		<div>{{deposit.date}}</div>
 	</div>
 

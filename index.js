@@ -110,7 +110,7 @@ app.post("/api/users/:name/accounts/:id/withdrawals", (req, res) => {
 				res.json(user)		
 			});
 		} else {
-			account.status="ALERT: INSUFFICIENT FUNDS IN ACCOUNT";
+			account.status="INSUFFICIENT FUNDS";
 			user.save().then(function(user){
 				res.json(user)		
 			});	
@@ -134,7 +134,7 @@ app.post("/api/users/:name/accounts/:id/deposits", (req, res) => {
 				res.json(user)		
 			});
 		} else {
-			account.status="ALERT: EXCEEDS CURRENT FUNDS";
+			account.status="EXCEEDS AVAILABLE CASH";
 			user.save().then(function(user){
 				res.json(user)		
 			});

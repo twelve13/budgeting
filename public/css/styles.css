@@ -1,8 +1,249 @@
-.account-wrapper {
-	display: flex;
+* {
+	margin: 0;
 }
 
-.account {
+body {
+	/*background-color: #dbffdc;*/
+	/*font-family: 'Permanent Marker', cursive;*/
+	font-family: 'Bubbler One', sans-serif;
+	background-image: url("http://wallpapercave.com/wp/tclDQyy.png");
+}
+
+a {
+	color: black;
+}
+
+input {
+	height: 30px;
+}
+
+.app-name {
+	background-color: black;
+	color: white;
+	font-size: 500%;
+	padding-left: 2%;
+}
+
+.users-wrapper {
+	margin-top: 5%;
+}
+
+.users-wrapper * {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+}
+
+.user-name {
+	font-size: 200%;
+	margin: 2% 0;
+}
+
+.new-user-form * {
+	display: flex;
+	height: 30px;
+	margin: 2%;
+	width: 20%;
+}
+
+.new-user-form :nth-child(2) {
+	width: 10%;
+}
+
+.nav {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 1%;
+}
+
+.nav * {
+	margin: 0 1%;
+}
+
+.delete {
+	height: 40px;
+	width: 80px;
+}
+
+.users-dashboard {
+	font-size: 200%;
+	text-align: center;
+}
+
+.current-funds-display {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 1%;
+	text-align: center;
+}
+
+.current-funds-display * {
+	margin-top: 5px;
+	width: 100%;
+}
+
+.current-funds-display :nth-child(2) {
+	font-size: 250%;
+}
+
+.current-funds-display :nth-child(3) {
+	font-size: 120%;
+}
+
+.add-cash {
 	border: solid black 2px;
-	width: 33%;
+	border-radius: 20px;
+	font-size: 100%;
+	padding: 2px;
+	text-align: center;
+	width: 100px;
+}
+
+.edit-current-funds {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	margin: 2% 0;
+}
+
+.edit-current-funds * {
+	margin: 5px;
+}
+
+.edit-current-funds :nth-child(2) {
+	margin-right: 2%;
+}
+
+.account-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.account, .new-account {
+/*	background-color: rgba(255, 255, 255, 0.7);*/
+	border: solid black 2px;
+	border-radius: 10%;
+	box-sizing: border-box;
+	font-size: 120%;
+	height: 350px;
+	margin: 1%;
+	padding: 1%;
+	width: 31%;
+}
+
+.new-account {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.new-account * {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 75%;
+}
+
+.account-header {
+	border-bottom: solid black 2px;
+	display: flex;
+	height: 40%;
+}
+
+.account-name {
+	align-items: center;
+	display: flex;
+	font-size: 200%;
+	justify-content: center;
+	width: 60%;
+}
+
+.goal-and-current {
+/*	background-color: black;
+	color: white;*/
+	/*background-color: red;*/
+	text-align: center;
+	width: 40%;
+}
+
+.current {
+	align-items: center;
+	/*background-color: orange;*/
+	border-bottom: solid black 2px;
+	display: flex;
+	font-size: 200%;
+	height: 40%;
+	justify-content: center;
+}
+
+.goal {
+/*	background-color: yellow;*/
+	margin-top: 3px;
+}
+
+.goal-date {
+	font-size: 80%;
+}
+
+.new-w-and-d {
+	display: flex;
+	width: 100%;
+}
+
+.new-w, .new-d {
+	background-color: rgba(200, 200, 200, 0.6);
+/*	color: white;*/
+	border-radius: 10%;
+	display: flex;
+	flex-wrap: wrap;
+	height: 150px;
+	justify-content: center;
+	margin: 2%;
+	width: 46%;
+}
+
+.new-w *, .new-d *{
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.account-footer {
+	display: flex;
+	justify-content: space-between;
+}
+
+.new-user-button {
+	font-size: 200%;
+}
+
+.welcome {
+	font-size: 150%;
+}
+
+.list-title {
+	background-color: black;
+	color: white;
+	font-size: 200%;
+}
+
+.list-item {
+	display: flex;
+	font-size: 150%;
+	justify-content: space-around;
+}
+
+.searchbar {
+	display: flex;
+	justify-content: center;
+	margin: 2% 0;
+}
+
+.searchbar :nth-child(2) {
+	width: 30%;
 }

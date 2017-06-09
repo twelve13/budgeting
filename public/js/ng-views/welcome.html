@@ -1,12 +1,13 @@
-<h1>welcome</h1>
+<div class="users-wrapper">
+	<div class="welcome">Welcome</div>
+	<div ng-repeat="user in vm.users">
+		<div class="user-name"><a ui-sref="dashboard({name: user.name})">{{user.name}}</a></div>
+	</div>
 
-<div ng-repeat="user in vm.users">
-	<p><a ui-sref="dashboard({name: user.name})">{{user.name}}</a></p>
-</div>
-
-<h3>Create New User</h3>
-<form ng-submit="vm.create()">
-	<input type="text" ng-model="vm.newUser.name" placeholder="Enter Name">
-	<button type="submit">submit</button>
-</form>
+	<div class="new-user-button" ng-click="show = !show">(+)New User</div>
+	<form class="new-user-form" ng-show="show" ng-submit="vm.create()">
+		<input type="text" ng-model="vm.newUser.name" placeholder="Enter Name">
+		<button type="submit">submit</button>
+	</form>
+	</div>
 

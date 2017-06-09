@@ -1,52 +1,69 @@
-<p><a ui-sref="welcome">to homepage</a></p>
+<div class="nav">
+	<p><a ui-sref="welcome">&lt&ltHome</a></p>
+	<div class="users-dashboard">{{vm.user.name}}'s Dashboard</div>
+	<button class="delete" ng-click="vm.destroy()">Delete User</button>
+</div>
 
-<h1>{{vm.user.name}}'s Dashboard</h1>
-<button ng-click="vm.destroy()">Delete User</button>
+<div class="current-funds-display">
+	<div class="add-cash" ng-click="show = !show">Add Cash</div>
+	<div>Available Cash: ${{vm.user.current_funds}}</div>
+	<div>From: {{vm.user.source}}</div>
+</div>
 
-<form ng-submit="vm.update()">
-	<p>current funds</p><input type="number" ng-model="vm.user.current_funds">
-	<p>from</p><input type="text" ng-model="vm.user.source">
+<form class="edit-current-funds" ng-show="show" ng-submit="vm.update()">
+	<p>Amount</p><input type="number" ng-model="vm.user.current_funds">
+	<p>Source</p><input type="text" ng-model="vm.user.source">
 	<button type="submit">submit</button>
 </form>
-
-
-<h3>Current funds: {{vm.user.current_funds}}</h3>
-<h3>from: {{vm.user.source}}</h3>
-
-
-<h2>new account</h2>
-
-<form ng-submit="vm.create()">
-	<input type="text" ng-model="vm.newAccount.name" placeholder="Account Name">
-	<input type="number" ng-model="vm.newAccount.goal_amount" placeholder="Goal Amount">
-	<input type="number" ng-model="vm.newAccount.current_amount" placeholder="Current Amount">
-	<input type="text" ng-model="vm.newAccount.goal_date" placeholder="Goal Date">
-	<button type="submit">submit</button>
-</form>
-
 
 <div class="account-wrapper">
-<div class="account" data-ng-repeat="account in vm.user.accounts">
-	<p><a ui-sref="show({name: vm.user.name, id: account._id})">Account Name: {{account["name"]}}</a></p>
-	<p>Goal Date: {{account["goal_date"]}}</p>
-	<p>Goal Amount: {{account["goal_amount"]}}</p>
-	<p>Current Amount: {{account["current_amount"]}}</p>
-	
+	<div class="account" data-ng-repeat="account in vm.user.accounts">
+		<div class="account-header">
+			<div class="account-name">{{account["name"]}}</div>
+			<div class="goal-and-current">
+				<div class="current">
+					<div>${{account["current_amount"]}}</div>
+				</div>
+				<div class="goal">
+					<p>Goal:</p>
+					<div>${{account["goal_amount"]}}</div>
+					<div class="goal-date">by {{account["goal_date"]}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="new-w-and-d">
+			<div class="new-d">
+				<p>Deposit</p>
+				<form ng-submit="vm.deposit(account)">
+					<input type="number" ng-model="vm[account.name].newDeposit.amount" placeholder="amount received">
+					<button type="submit">submit</button>
+				</form>
+			</div>
+			<div class="new-w">
+				<p>Withdrawal</p>
+				<form ng-submit="vm.withdraw(account)">
+					<input type="number" ng-model="vm[account.name].newWithdrawal.amount" placeholder="amount spent">
+					<input type="text" ng-model="vm[account.name].newWithdrawal.name" placeholder="for">
+					<button type="submit">submit</button>
+				</form>
+			</div>
+		</div>
+		<div class="account-footer">
+			<div>Status: {{account["status"]}}</div>
+			<div><a ui-sref="show({name: vm.user.name, id: account._id})">log</a></div>
+		</div>
+	</div>
 
 
-<h4>new withdrawals and deposits</h4>
-	<form ng-submit="vm.withdraw(account)">
-		<input type="text" ng-model="vm[account.name].newWithdrawal.name" placeholder="withdrawal for">
-		<input type="number" ng-model="vm[account.name].newWithdrawal.amount" placeholder="amount spent">
+<div class="new-account">
+	<p>New Account</p>
+	<form ng-submit="vm.create()">
+		<input type="text" ng-model="vm.newAccount.name" placeholder="Account Name">
+		<input type="number" ng-model="vm.newAccount.current_amount" placeholder="Current Amount">
+		<input type="number" ng-model="vm.newAccount.goal_amount" placeholder="Goal Amount">
+		<input type="text" ng-model="vm.newAccount.goal_date" placeholder="Goal Date">
 		<button type="submit">submit</button>
 	</form>
-
-
-	<form ng-submit="vm.deposit(account)">
-		<input type="number" ng-model="vm[account.name].newDeposit.amount" placeholder="amount received">
-		<button type="submit">submit</button>
-	</form>
-	<p>Status: {{account["status"]}}</p>
 </div>
 </div>
 
