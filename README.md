@@ -1,6 +1,6 @@
 # cache
 
-![Alt text](/screenshot.jpg?raw=true "Screenshot")
+![Alt text](/screenshot.png?raw=true "Screenshot")
 
 
 Technologies Used:
