@@ -1,3 +1,11 @@
+* {
+	margin: 0;
+}
+
+input {
+	height: 30px;
+}
+
 .app-name {
 	background-color: black;
 	color: white;
@@ -38,6 +46,11 @@
 	justify-content: space-between;
 }
 
+.delete {
+	height: 40px;
+	width: 80px;
+}
+
 .users-dashboard {
 	font-size: 300%;
 	text-align: center;
@@ -54,16 +67,40 @@
 	margin: 0 2%;
 }
 
+.add-cash {
+	border: solid black 2px;
+	border-radius: 20px;
+	font-size: 50%;
+	padding: 2px;
+	text-align: center;
+	width: 50px;
+}
+
 .edit-current-funds {
+	align-items: center;
 	display: flex;
 	justify-content: center;
+	margin-bottom: 2%;
+}
+
+.edit-current-funds * {
+	margin: 5px;
+}
+
+.edit-current-funds :nth-child(2) {
+	margin-right: 2%;
 }
 
 .account-wrapper {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .account {
 	border: solid black 2px;
-	width: 33%;
+	box-sizing: border-box;
+	font-size: 120%;
+	margin: 1%;
+	padding: 1%;
+	width: 22.5%;
 }

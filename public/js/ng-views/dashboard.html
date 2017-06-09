@@ -1,18 +1,21 @@
 <div class="nav">
 	<p><a ui-sref="welcome">&lt&ltHome</a></p>
-	<button ng-click="vm.destroy()">Delete User</button>
+	<button class="delete" ng-click="vm.destroy()">Delete User</button>
 </div>
 
 <div class="users-dashboard">{{vm.user.name}}'s Dashboard</div>
 
 <div class="current-funds-display">
-	<div>Cash to cache: {{vm.user.current_funds}}</div>
+	<div class="add-cash" ng-click="show = !show">Add Cash</div>
+	<div>Cash to stash: {{vm.user.current_funds}}</div>
 	<div>From: {{vm.user.source}}</div>
 </div>
 
-<form class="edit-current-funds" ng-submit="vm.update()">
-	<p>current funds</p><input type="number" ng-model="vm.user.current_funds">
-	<p>from</p><input type="text" ng-model="vm.user.source">
+
+
+<form class="edit-current-funds" ng-show="show" ng-submit="vm.update()">
+	<p>Amount</p><input type="number" ng-model="vm.user.current_funds">
+	<p>Source</p><input type="text" ng-model="vm.user.source">
 	<button type="submit">submit</button>
 </form>
 
@@ -25,14 +28,15 @@
 
 <div class="account-wrapper">
 <div class="account" data-ng-repeat="account in vm.user.accounts">
-	<p><a ui-sref="show({name: vm.user.name, id: account._id})">Account Name: {{account["name"]}}</a></p>
+	<p><a ui-sref="show({name: vm.user.name, id: account._id})">Account: {{account["name"]}}</a></p>
+	<p>Current Amount: {{account["current_amount"]}}</p>
 	<p>Goal Date: {{account["goal_date"]}}</p>
 	<p>Goal Amount: {{account["goal_amount"]}}</p>
-	<p>Current Amount: {{account["current_amount"]}}</p>
+
 	
 
 
-<h4>new withdrawals and deposits</h4>
+<h4>new withs and deps</h4>
 	<form ng-submit="vm.withdraw(account)">
 		<input type="text" ng-model="vm[account.name].newWithdrawal.name" placeholder="withdrawal for">
 		<input type="number" ng-model="vm[account.name].newWithdrawal.amount" placeholder="amount spent">
