@@ -13,8 +13,8 @@ Installation Instructions:
 None
 
 
--Link to user stories
-
+-User stories
+https://github.com/twelve13/budgeting/blob/master/user-stories
 
 -Link to wireframes
 
