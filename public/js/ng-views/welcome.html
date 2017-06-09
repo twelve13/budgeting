@@ -1,10 +1,10 @@
 <div class="users-wrapper">
-	<div>Choose Account</div>
+	<div class="welcome">Welcome</div>
 	<div ng-repeat="user in vm.users">
 		<div class="user-name"><a ui-sref="dashboard({name: user.name})">{{user.name}}</a></div>
 	</div>
 
-	<div ng-click="show = !show">(+)New User</div>
+	<div class="new-user-button" ng-click="show = !show">(+)New User</div>
 	<form class="new-user-form" ng-show="show" ng-submit="vm.create()">
 		<input type="text" ng-model="vm.newUser.name" placeholder="Enter Name">
 		<button type="submit">submit</button>

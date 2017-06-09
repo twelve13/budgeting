@@ -2,6 +2,16 @@
 	margin: 0;
 }
 
+body {
+	/*background-color: #dbffdc;*/
+	/*font-family: 'Permanent Marker', cursive;*/
+	font-family: 'Bubbler One', sans-serif;
+}
+
+a {
+	color: black;
+}
+
 input {
 	height: 30px;
 }
@@ -75,7 +85,7 @@ input {
 }
 
 .current-funds-display :nth-child(2) {
-	font-size: 200%;
+	font-size: 250%;
 }
 
 .current-funds-display :nth-child(3) {
@@ -112,7 +122,7 @@ input {
 }
 
 .account, .new-account {
-	background-color: rgba(255, 255, 255, 0.7);
+/*	background-color: rgba(255, 255, 255, 0.7);*/
 	border: solid black 2px;
 	border-radius: 10%;
 	box-sizing: border-box;
@@ -164,7 +174,7 @@ input {
 	/*background-color: orange;*/
 	border-bottom: solid black 2px;
 	display: flex;
-	font-size: 150%;
+	font-size: 200%;
 	height: 40%;
 	justify-content: center;
 }
@@ -184,7 +194,8 @@ input {
 }
 
 .new-w, .new-d {
-	background-color: #d2d1d1;
+	background-color: black;
+	color: white;
 	border-radius: 10%;
 	display: flex;
 	flex-wrap: wrap;
@@ -204,6 +215,26 @@ input {
 .account-footer {
 	display: flex;
 	justify-content: space-between;
+}
+
+.new-user-button {
+	font-size: 200%;
+}
+
+.welcome {
+	font-size: 150%;
+}
+
+.list-title {
+	background-color: black;
+	color: white;
+	font-size: 200%;
+}
+
+.list-item {
+	display: flex;
+	font-size: 150%;
+	justify-content: space-around;
 }
 
 
