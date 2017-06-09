@@ -10,7 +10,7 @@ input {
 	background-color: black;
 	color: white;
 	font-size: 500%;
-	text-align: center;
+	/*text-align: center;*/
 }
 
 .users-wrapper {
@@ -44,6 +44,11 @@ input {
 .nav {
 	display: flex;
 	justify-content: space-between;
+	margin-top: 1%;
+}
+
+.nav * {
+	margin: 0 1%;
 }
 
 .delete {
@@ -52,35 +57,45 @@ input {
 }
 
 .users-dashboard {
-	font-size: 300%;
+	font-size: 200%;
 	text-align: center;
 }
 
 .current-funds-display {
 	display: flex;
-	font-size: 200%;
+	flex-wrap: wrap;
 	justify-content: center;
-	margin: 2% 0;
+	margin-top: 1%;
+	text-align: center;
 }
 
 .current-funds-display * {
-	margin: 0 2%;
+	margin-top: 5px;
+	width: 100%;
+}
+
+.current-funds-display :nth-child(2) {
+	font-size: 200%;
+}
+
+.current-funds-display :nth-child(3) {
+	font-size: 120%;
 }
 
 .add-cash {
 	border: solid black 2px;
 	border-radius: 20px;
-	font-size: 50%;
+	font-size: 100%;
 	padding: 2px;
 	text-align: center;
-	width: 50px;
+	width: 100px;
 }
 
 .edit-current-funds {
 	align-items: center;
 	display: flex;
 	justify-content: center;
-	margin-bottom: 2%;
+	margin: 2% 0;
 }
 
 .edit-current-funds * {
@@ -98,9 +113,75 @@ input {
 
 .account {
 	border: solid black 2px;
+	border-radius: 10%;
 	box-sizing: border-box;
 	font-size: 120%;
+	height: 350px;
 	margin: 1%;
 	padding: 1%;
-	width: 22.5%;
+	width: 31%;
+}
+
+.account-header {
+	border-bottom: solid black 2px;
+	display: flex;
+	height: 40%;
+}
+
+.account-name {
+	align-items: center;
+	display: flex;
+	font-size: 200%;
+	justify-content: center;
+	width: 60%;
+}
+
+.goal-and-current {
+/*	background-color: black;
+	color: white;*/
+	/*background-color: red;*/
+	text-align: center;
+	width: 40%;
+}
+
+.current {
+	align-items: center;
+	/*background-color: orange;*/
+	border-bottom: solid black 2px;
+	display: flex;
+	font-size: 150%;
+	height: 40%;
+	justify-content: center;
+}
+
+.goal {
+/*	background-color: yellow;*/
+	margin-top: 3px;
+}
+
+.goal-date {
+	font-size: 80%;
+}
+
+.new-w-and-d {
+	display: flex;
+	width: 100%;
+}
+
+.new-w, .new-d {
+	background-color: #d2d1d1;
+	border-radius: 10%;
+	display: flex;
+	flex-wrap: wrap;
+	height: 150px;
+	justify-content: center;
+	margin: 2%;
+	width: 46%;
+}
+
+.new-w *, .new-d *{
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
