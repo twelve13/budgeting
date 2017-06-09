@@ -6,6 +6,7 @@ body {
 	/*background-color: #dbffdc;*/
 	/*font-family: 'Permanent Marker', cursive;*/
 	font-family: 'Bubbler One', sans-serif;
+	background-image: url("http://wallpapercave.com/wp/tclDQyy.png");
 }
 
 a {
@@ -20,7 +21,7 @@ input {
 	background-color: black;
 	color: white;
 	font-size: 500%;
-	/*text-align: center;*/
+	padding-left: 2%;
 }
 
 .users-wrapper {
@@ -194,8 +195,8 @@ input {
 }
 
 .new-w, .new-d {
-	background-color: black;
-	color: white;
+	background-color: rgba(200, 200, 200, 0.6);
+/*	color: white;*/
 	border-radius: 10%;
 	display: flex;
 	flex-wrap: wrap;

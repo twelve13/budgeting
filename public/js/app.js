@@ -98,7 +98,7 @@ angular
 	}
 
 	function welcomeControllerFunction($state, UserFactory){
-		this.users = UserFactory.query()
+		this.users = UserFactory.query() 
 		this.newUser = new UserFactory()
 		this.create = function() {
 			this.newUser.$save().then(function(user){
