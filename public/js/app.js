@@ -48,6 +48,7 @@ angular
 	 	"$stateParams",
 	 	"UserFactory",
 	 	"AccountFactory",
+	 	"WithdrawalFactory",
 	 	showControllerFunction
 	 ])
 
@@ -90,7 +91,7 @@ angular
 
 	function WithdrawalFactoryFunction ($resource) {
 		return $resource("/api/users/:name/accounts/:account_id/withdrawals/:id", {}, {
-			query: {method: "GET", isArray: true }
+		
 		})
 	}
 
@@ -164,23 +165,28 @@ angular
 				$state.go("welcome")
 			})
 		}
-		this.destroyWithdrawal = function(index){
 
+		this.destroyWithdrawal = function(index){
+			console.log(WithdrawalFactory)
 			var withdrawal_to_delete = this.account.withdrawals[index]
 			console.log(withdrawal_to_delete)
 			console.log("before", this.account.withdrawals)
-			this.account.withdrawals.splice(index, 1), (function(account){
+
+			WithdrawalFactory.delete({name: $stateParams.name, account_id: $stateParams.id, id: withdrawal_to_delete._id}, function(res) {
+				$state.reload()
+			} )
+		// 	this.account.withdrawals.splice(index, 1), (function(account){
 				
 			
 				
 
-			})
+		// 	})
 
-			this.account.$update({name: $stateParams.name, id: $stateParams.id}).then(function(){
-						$state.reload()
-				})
-			console.log("after", this.account.withdrawals)
-			const newArray = this.account.withdrawals
-		}
+		// 	this.account.$update({name: $stateParams.name, id: $stateParams.id}).then(function(){
+		// 				$state.reload()
+		// 		})
+		// 	console.log("after", this.account.withdrawals)
+		// 	const newArray = this.account.withdrawals
+		 }
 	 }
 

@@ -74,18 +74,18 @@ app.post("/api/users/:name/accounts", (req, res) => {
 });
 
 //update account
-app.put("/api/users/:name/accounts/:id", (req, res) => {
-	models.User.findOneAndUpdate({name: req.params.name}).then(function(user){
-		let account = user.accounts.find((account) => {
-			return account.id == req.params.id
-		});
+// app.put("/api/users/:name/accounts/:id", (req, res) => {
+// 	models.User.findOneAndUpdate({name: req.params.name}).then(function(user){
+// 		let account = user.accounts.find((account) => {
+// 			return account.id == req.params.id
+// 		});
 
-		account.withdrawals = newArray;
-		user.save().then(function(user){
-				res.json(user);
-			});
-})
-})
+// 		account.withdrawals = newArray;
+// 		user.save().then(function(user){
+// 				res.json(user);
+// 			});
+// })
+// })
 
 //delete account
 //find the user, then the account.  loop through user's accounts to find that account, then splice it out and save the user
@@ -105,6 +105,31 @@ app.delete("/api/users/:name/accounts/:id", (req, res) => {
 		});
 	});
 });
+
+//delete withdrawal
+//find the user, then the account.  loop through user's accounts to find that account.  loop through account's withdrawal, 
+//then splice it out and save the user
+app.delete("/api/users/:name/accounts/:account_id/withdrawals/:id", (req, res) => {
+	models.User.findOne({name: req.params.name}).then(function(user){
+		let account = user.accounts.find((account) => {
+			return account.id == req.params.account_id
+		});
+		let withdrawal = account.withdrawals.find((withdrawal) => {
+			return withdrawal.id == req.params.id
+		});
+		for(let i=0; i < account.withdrawals.length; i++){
+			if(account.withdrawals[i].id == withdrawal.id){
+				account.withdrawals.splice(i, 1)
+			}
+		}
+	 	account.current_amount = account.current_amount + withdrawal.amount;
+		user.save().then(function(){
+				res.json({success: true})
+		});
+	});
+});
+
+
 
 //new withdrawal
 //find the user then find the account  create a new withdrawal.  
