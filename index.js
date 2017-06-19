@@ -73,6 +73,20 @@ app.post("/api/users/:name/accounts", (req, res) => {
 	});
 });
 
+//update account
+app.put("/api/users/:name/accounts/:id", (req, res) => {
+	models.User.findOneAndUpdate({name: req.params.name}).then(function(user){
+		let account = user.accounts.find((account) => {
+			return account.id == req.params.id
+		});
+
+		account.withdrawals = newArray;
+		user.save().then(function(user){
+				res.json(user);
+			});
+})
+})
+
 //delete account
 //find the user, then the account.  loop through user's accounts to find that account, then splice it out and save the user
 app.delete("/api/users/:name/accounts/:id", (req, res) => {
