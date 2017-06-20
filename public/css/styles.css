@@ -3,9 +3,9 @@
 }
 
 body {
-	font-family: 'Bubbler One', sans-serif;
 	background-image: url("http://wallpapercave.com/wp/tclDQyy.png");
 	background-size: cover;
+	font-family: 'Bubbler One', sans-serif;
 }
 
 a {
@@ -243,6 +243,6 @@ input {
 	margin: 2% 0;
 }
 
-.searchbar :nth-child(2) {
+.search-field {
 	width: 30%;
 }
