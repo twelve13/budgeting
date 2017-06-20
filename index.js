@@ -8,27 +8,6 @@ app.set("port", process.env.PORT || 8080)
 app.use(bodyParser.json({extended: true}));
 app.use("/assets", express.static("public"));
 
-// var db;
-
-// Connect to the database before starting the application server.
-// mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
-//   if (err) {
-//     console.log(err);
-//     process.exit(1);
-//   }
-
-//   // Save database object from the callback for reuse.
-//   db = database;
-//   console.log("Database connection ready");
-
-//   // Initialize the app.
-//   var server = app.listen(process.env.PORT || 8080, function () {
-//     var port = server.address().port;
-//     console.log("App now running on port", port);
-//   });
-// });
-
-
 app.get("/api/welcome", (req, res) => {
 	req.flash("info", "welcome");
 	models.User.find({}).then(function(users){
@@ -93,20 +72,6 @@ app.post("/api/users/:name/accounts", (req, res) => {
 		});
 	});
 });
-
-//update account
-// app.put("/api/users/:name/accounts/:id", (req, res) => {
-// 	models.User.findOneAndUpdate({name: req.params.name}).then(function(user){
-// 		let account = user.accounts.find((account) => {
-// 			return account.id == req.params.id
-// 		});
-
-// 		account.withdrawals = newArray;
-// 		user.save().then(function(user){
-// 				res.json(user);
-// 			});
-// })
-// })
 
 //delete account
 //find the user, then the account.  loop through user's accounts to find that account, then splice it out and save the user
@@ -176,8 +141,6 @@ app.delete("/api/users/:name/accounts/:account_id/withdrawals/:id", (req, res) =
 		});
 	});
 });
-
-
 
 //new deposit - same setup but opposite math of new withdrawal
 app.post("/api/users/:name/accounts/:id/deposits", (req, res) => {
