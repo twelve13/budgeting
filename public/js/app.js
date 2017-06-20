@@ -48,6 +48,8 @@ angular
 	 	"$stateParams",
 	 	"UserFactory",
 	 	"AccountFactory",
+	 	"WithdrawalFactory",
+	 	"DepositFactory",
 	 	showControllerFunction
 	 ])
 
@@ -90,6 +92,7 @@ angular
 
 	function WithdrawalFactoryFunction ($resource) {
 		return $resource("/api/users/:name/accounts/:account_id/withdrawals/:id", {}, {
+		
 		})
 	}
 
@@ -152,13 +155,30 @@ angular
 	}
 	
 
-	function showControllerFunction ($state, $stateParams, UserFactory, AccountFactory) {
+	function showControllerFunction ($state, $stateParams, UserFactory, AccountFactory, WithdrawalFactory, DepositFactory) {
 		this.user = UserFactory.get({name: $stateParams.name});
 	 	this.account = AccountFactory.get({name: $stateParams.name, id: $stateParams.id});
+
 	 	this.destroy = function(){
-		this.account.$delete({name: $stateParams.name, id: $stateParams.id}).then(function(){
-			$state.go("welcome")
+			this.account.$delete({name: $stateParams.name, id: $stateParams.id}).then(function(){
+				$state.go("welcome")
 			})
 		}
+
+		this.destroyWithdrawal = function(index){
+			var withdrawal_to_delete = this.account.withdrawals[index]
+
+			WithdrawalFactory.delete({name: $stateParams.name, account_id: $stateParams.id, id: withdrawal_to_delete._id}, function(res) {
+				$state.reload()
+			})
+		 }
+
+		 this.destroyDeposit = function(index){
+			var deposit_to_delete = this.account.deposits[index]
+
+			DepositFactory.delete({name: $stateParams.name, account_id: $stateParams.id, id: deposit_to_delete._id}, function(res) {
+				$state.reload()
+			})
+		 }
 	 }
 
