@@ -93,8 +93,8 @@ app.delete("/api/users/:name/accounts/:id", (req, res) => {
 
 
 //new withdrawal
-//find the user then find the account  create a new withdrawal.  
-//if there's enough to cover the withdrawal, add the withdrawal to the account and subtract from the account's current amount
+//find the user then find the account.  create a new withdrawal and add it to the array of withdrawals.  
+//if there's enough in the account to cover the withdrawal, add the withdrawal to the account and subtract from the account's current amount
 //if there isn't enough, don't save the withdrawal, don't subtract, and show the error message
 app.post("/api/users/:name/accounts/:id/withdrawals", (req, res) => {
 	models.User.findOne({name: req.params.name}).then(function(user) {
@@ -120,7 +120,7 @@ app.post("/api/users/:name/accounts/:id/withdrawals", (req, res) => {
 
 //delete withdrawal
 //find the user, then the account.  loop through user's accounts to find that account.  loop through account's withdrawals, 
-//then splice it out and save the user
+//then splice it out, update the account amount, and save the user
 app.delete("/api/users/:name/accounts/:account_id/withdrawals/:id", (req, res) => {
 	models.User.findOne({name: req.params.name}).then(function(user){
 		let account = user.accounts.find((account) => {
@@ -141,7 +141,10 @@ app.delete("/api/users/:name/accounts/:account_id/withdrawals/:id", (req, res) =
 	});
 });
 
-//new deposit - same setup but opposite math of new withdrawal
+//new deposit 
+//find the user then find the account.  create a new deposit and add it to the array of deposits.  
+//if there's enough in the user's current funds to cover the deposit, add the deposit to the account, add to the account's current amount, and subtract from the user's current funds
+//if there isn't enough, don't save the deposit, don't add, and show the error message
 app.post("/api/users/:name/accounts/:id/deposits", (req, res) => {
 	models.User.findOne({name: req.params.name}).then(function(user) {
 		let account = user.accounts.find((account) => {
@@ -167,7 +170,7 @@ app.post("/api/users/:name/accounts/:id/deposits", (req, res) => {
 
 //delete deposit
 //find the user, then the account.  loop through user's accounts to find that account.  loop through account's deposits, 
-//then splice it out and save the user
+//then splice it out, update account amount and current funds amount, and save the user
 app.delete("/api/users/:name/accounts/:account_id/deposits/:id", (req, res) => {
 	models.User.findOne({name: req.params.name}).then(function(user){
 		let account = user.accounts.find((account) => {
@@ -190,13 +193,11 @@ app.delete("/api/users/:name/accounts/:account_id/deposits/:id", (req, res) => {
 });
 
 
-
-//connect to angular
 app.get("/*", (req, res) => {
 	res.sendFile(path.join(__dirname + "/index.html"));
 });
 
 
 app.listen(4000, () => {
-  console.log("deploy me");
+  console.log("it's alive");
 });
