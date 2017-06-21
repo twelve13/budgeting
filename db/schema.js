@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 //this creates the database in nodedb
-mongoose.connect(process.env.MONGOLAB_URL);
+mongoose.connect("mongodb://localhost/budgeting");
 
 mongoose.connection.on("error", err => {
 	console.log(err);
