@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const models = require("./db/schema");
 const path = require("path");
 
+app.set("port", process.env.PORT || 8080)
+
 app.use(bodyParser.json({extended: true}));
 app.use("/assets", express.static("public"));
 
@@ -198,6 +200,6 @@ app.get("/*", (req, res) => {
 });
 
 
-app.listen(4000, () => {
+app.listen(app.get("port"), () => {
   console.log("it's alive");
 });
