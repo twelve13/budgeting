@@ -203,7 +203,7 @@ input {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	width: 75%;
+	width: 88%;
 }
 
 .account-footer {
@@ -228,13 +228,21 @@ input {
 }
 
 .list-item {
+	box-sizing: border-box;
 	display: flex;
+	flex-wrap: wrap;
 	font-size: 150%;
 	justify-content: space-around;
 }
 
-.list-item div {
-	width: 25%;
+.list-item-fields {
+	display: flex;
+	flex-wrap: wrap;
+	width: 75%;
+}
+
+.list-item-fields div {
+	width: 33%;
 }
 
 .searchbar {
@@ -245,4 +253,51 @@ input {
 
 .search-field {
 	width: 30%;
+}
+
+@media (max-width: 610px) {
+	.account, .new-account {
+		margin: 3%;
+		width: 94%;
+	}
+
+	.searchbar {
+		margin: 4% 0;
+	}
+
+	.search-field {
+		width: 75%;
+	}
+
+	.list-item {
+		border-bottom: dotted 1px black;
+		padding: 0 2%;
+	}
+
+	.list-item-fields div {
+		width: 100%;
+	}
+
+	.list-item button {
+		align-self: center;
+		height: 50px;
+	}
+}
+
+@media (min-width: 611px) and (max-width: 1024px) {
+	.account, .new-account {
+		width: 48%;
+	}
+
+	.list-item-fields div:nth-child(1), .list-item-fields div:nth-child(2) {
+		width: 25%;
+	}
+
+	.list-item-fields div:nth-child(3) {
+		width: 50%;
+	}
+
+	.search-field {
+		width: 75%;
+	}
 }

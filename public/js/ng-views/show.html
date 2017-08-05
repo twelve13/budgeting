@@ -11,17 +11,21 @@
 
 <div class="list-title">withdrawals</div>
 <div class="list-item" data-ng-repeat="withdrawal in vm.account.withdrawals | filter: {name: vm.search}">
-	<div>{{withdrawal.name}}</div>
-	<div>${{withdrawal.amount}}</div>
-	<div>{{withdrawal.date}}</div>
+	<div class="list-item-fields">
+		<div>{{withdrawal.name}}</div>
+		<div>${{withdrawal.amount}}</div>
+		<div>{{withdrawal.date}}</div>
+	</div>
 	<button ng-click="vm.destroyWithdrawal($index)">Delete Entry</button>
 </div>
 	
 <div class="list-title">deposits</div>
 <div class="list-item" data-ng-repeat="deposit in vm.account.deposits | filter: {name: vm.search}">
-	<div>{{deposit.name}}</div>
-	<div>${{deposit.amount}}</div>
-	<div>{{deposit.date}}</div>
+	<div class="list-item-fields">
+		<div>{{deposit.name}}</div>
+		<div>${{deposit.amount}}</div>
+		<div>{{deposit.date}}</div>
+	</div>
 	<button ng-click="vm.destroyDeposit($index)">Delete Entry</button>
 </div>
 
