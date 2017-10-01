@@ -54,6 +54,7 @@ angular
 	 ])
 
 
+
 	function RouterFunction($stateProvider, $locationProvider, $urlRouterProvider){
 		$locationProvider.html5Mode(true)
 		$stateProvider
@@ -114,6 +115,7 @@ angular
 	function dashboardControllerFunction ($state, $stateParams, UserFactory, AccountFactory, WithdrawalFactory, DepositFactory) {
 
 		this.user = UserFactory.get({name: $stateParams.name});
+		console.log(this.user)
 
 		this.update = function(){
 			this.user.$update({name: $stateParams.name})
@@ -138,6 +140,7 @@ angular
 			let newWithdrawal = new WithdrawalFactory()
 			newWithdrawal.name = this[account.name].newWithdrawal.name
 			newWithdrawal.amount = this[account.name].newWithdrawal.amount
+			newWithdrawal.date = this[account.name].newWithdrawal.date
 			newWithdrawal.$save({name: this.user.name, account_id: account._id}).then(function() {
 				$state.reload()
 			})
@@ -150,6 +153,11 @@ angular
 			newDeposit.$save({name: this.user.name, account_id: account._id}).then(function() {
 				$state.reload()
 			})
+		}
+		var test = 100/2;
+		this.meterObj = {
+			"background-color" : "coral",
+			"height": test + "%"
 		}
 
 	}

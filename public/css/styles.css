@@ -77,28 +77,41 @@ input {
 	justify-content: center;
 	margin-top: 1%;
 	text-align: center;
-}
-
-.current-funds-display * {
-	margin-top: 5px;
 	width: 100%;
 }
 
-.current-funds-display :nth-child(2) {
+.add-cash-header :nth-child(2) {
 	font-size: 250%;
+	width: 100%;
 }
 
-.current-funds-display :nth-child(3) {
-	font-size: 120%;
+.add-cash-header :nth-child(3) {
+	font-size: 140%;
+}
+
+.summary {
+	text-align: right;
+	width: 10%;
+}
+
+.add-cash-header {
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-right: 10%;
+	width: 90%;
 }
 
 .add-cash {
 	border: solid black 2px;
 	border-radius: 20px;
 	font-size: 100%;
+	height: 10%;
+	margin: 0 45%;
 	padding: 2px;
 	text-align: center;
-	width: 100px;
+	width: 10%;
 }
 
 .edit-current-funds {
@@ -152,6 +165,13 @@ input {
 	height: 40%;
 }
 
+.meter {
+	border: solid 2px black;
+	border-radius: 10px;
+	height: 80%;
+	width: 5%;
+}
+
 .account-name {
 	align-items: center;
 	display: flex;
@@ -196,6 +216,14 @@ input {
 	justify-content: center;
 	margin: 2%;
 	width: 46%;
+}
+
+.new-d p {
+	color: #57ffab;
+}
+
+.new-w p {
+	color: #f54790;
 }
 
 .new-w *, .new-d *{

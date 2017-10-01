@@ -1,13 +1,23 @@
 <div class="nav">
 	<p><a ui-sref="welcome">&lt&ltHome</a></p>
 	<div class="users-dashboard">{{vm.user.name}}'s Dashboard</div>
-	<button class="delete" ng-click="vm.destroy()">Delete User</button>
+	<!-- <button class="delete" ng-click="vm.destroy()">Delete User</button> -->
 </div>
 
 <div class="current-funds-display">
-	<div class="add-cash" ng-click="show = !show">Add Cash</div>
-	<div>Available Cash: ${{vm.user.current_funds}}</div>
-	<div>From: {{vm.user.source}}</div>
+	<div class="summary" ng-init="total = 0">
+		<div data-ng-repeat="account in vm.user.accounts">
+			{{account["name"]}}  :  {{account["current_amount"]}}
+			<div ng-init='$parent.total = $parent.total + account["current_amount"]'></div>
+		</div>
+		<hr />
+		<div>${{total}}</div>
+	</div>
+	<div class="add-cash-header">
+		<div class="add-cash" ng-click="show = !show">Add Cash</div>
+		<div>Available Cash: ${{vm.user.current_funds}}</div>
+		<div>From: {{vm.user.source}}</div>
+	</div>
 </div>
 
 <form class="edit-current-funds" ng-show="show" ng-submit="vm.update()">
@@ -44,6 +54,7 @@
 				<form ng-submit="vm.withdraw(account)">
 					<input type="number" ng-model="vm[account.name].newWithdrawal.amount" placeholder="amount spent">
 					<input type="text" ng-model="vm[account.name].newWithdrawal.name" placeholder="for">
+					<input type="date" ng-model="vm[account.name].newWithdrawal.date" placeholder="for">
 					<button type="submit">submit</button>
 				</form>
 			</div>
@@ -66,4 +77,9 @@
 	</form>
 </div>
 </div>
+
+
+
+
+
 

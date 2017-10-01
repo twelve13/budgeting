@@ -8,7 +8,7 @@ app.use(bodyParser.json({extended: true}));
 app.use("/assets", express.static("public"));
 
 app.get("/api/welcome", (req, res) => {
-	req.flash("info", "welcome");
+
 	models.User.find({}).then(function(users){
 		res.json(users)
 	});
@@ -101,7 +101,7 @@ app.post("/api/users/:name/accounts/:id/withdrawals", (req, res) => {
 		let account = user.accounts.find((account) => {
 			return account.id == req.params.id
 		});
-		let newWithdrawal = new models.Withdrawal({name: req.body.name, amount: req.body.amount});
+		let newWithdrawal = new models.Withdrawal({name: req.body.name, amount: req.body.amount, date: req.body.date});
 		if (account.current_amount >= req.body.amount){
 			account.withdrawals.push(newWithdrawal);
 			account.current_amount = account.current_amount - req.body.amount;
