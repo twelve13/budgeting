@@ -272,8 +272,12 @@ input {
 	justify-content: space-between;
 }
 
-.okay {
-	background-color: green;
+.good {
+	display: none;
+}
+
+.insufficient-funds, .exceeds-available {
+	color: red;
 }
 
 .new-user-button {

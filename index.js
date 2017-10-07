@@ -120,12 +120,12 @@ app.post("/api/users/:name/accounts/:id/withdrawals", (req, res) => {
 		if (account.current_amount >= req.body.amount){
 			account.withdrawals.push(newWithdrawal);
 			account.current_amount = account.current_amount - req.body.amount;
-			account.status = "all good";
+			account.status = "good";
 			user.save().then(function(user){
 				res.json(user)		
 			});
 		} else {
-			account.status="INSUFFICIENT FUNDS";
+			account.status="insufficient-funds";
 			user.save().then(function(user){
 				res.json(user)		
 			});	
@@ -169,13 +169,13 @@ app.post("/api/users/:name/accounts/:id/deposits", (req, res) => {
 		if(user.current_funds >= req.body.amount){
 			account.deposits.push(newDeposit);
 			account.current_amount = account.current_amount + req.body.amount;
-			account.status = "all good";
+			account.status = "good";
 			user.current_funds = user.current_funds - req.body.amount;
 			user.save().then(function(user){
 				res.json(user)		
 			});
 		} else {
-			account.status="EXCEEDS AVAILABLE CASH";
+			account.status="exceeds-available";
 			user.save().then(function(user){
 				res.json(user)		
 			});

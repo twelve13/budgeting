@@ -65,7 +65,7 @@
 			</div>
 		</div>
 		<div class="account-footer">
-			<div>Status: {{account["status"]}}</div>
+			<div ng-class="account.status">{{account["status"]}}</div>
 			<div><a ui-sref="show({name: vm.user.name, id: account._id})">log</a></div>
 		</div>
 	</div>
