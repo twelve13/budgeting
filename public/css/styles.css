@@ -139,7 +139,7 @@ input {
 	border-radius: 10%;
 	box-sizing: border-box;
 	font-size: 120%;
-	height: 350px;
+	height: 360px;
 	margin: 1%;
 	padding: 1%;
 	width: 31%;
@@ -175,13 +175,13 @@ input {
 .account-name {
 	align-items: center;
 	display: flex;
+	flex-wrap: wrap;
 	font-size: 200%;
 	justify-content: center;
 	width: 60%;
 }
 
 .goal-and-current {
-	text-align: center;
 	width: 40%;
 }
 
@@ -195,11 +195,27 @@ input {
 }
 
 .goal {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	margin-top: 3px;
+}
+
+.goal :nth-child(1), .goal :nth-child(2) {
+	text-align: center;
+	width: 100%;
 }
 
 .goal-date {
 	font-size: 80%;
+}
+
+.edit-box {
+	display: flex;
+}
+
+.edit-box :nth-child(1) {
+	width: 75%;
 }
 
 .new-w-and-d {
@@ -208,11 +224,12 @@ input {
 }
 
 .new-w, .new-d {
+	align-content: center;
 	background-color: rgba(200, 200, 200, 0.6);
 	border-radius: 10%;
 	display: flex;
 	flex-wrap: wrap;
-	height: 150px;
+	height: 160px;
 	justify-content: center;
 	margin: 2%;
 	width: 46%;
@@ -224,10 +241,15 @@ input {
 
 .new-w p {
 	color: #f54790;
+	height: 20px;
+}
+
+.new-w form *, .new-d form * {
+	text-align: center;
+	width: 100%;
 }
 
 .new-w *, .new-d *{
-	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -237,6 +259,10 @@ input {
 .account-footer {
 	display: flex;
 	justify-content: space-between;
+}
+
+.okay {
+	background-color: green;
 }
 
 .new-user-button {

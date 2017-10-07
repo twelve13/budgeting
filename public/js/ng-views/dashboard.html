@@ -15,8 +15,7 @@
 	</div>
 	<div class="add-cash-header">
 		<div class="add-cash" ng-click="show = !show">Add Cash</div>
-		<div>Available Cash: ${{vm.user.current_funds}}</div>
-		<div>From: {{vm.user.source}}</div>
+		<div>Incoming Cash: ${{vm.user.current_funds}}</div>
 	</div>
 </div>
 
@@ -29,15 +28,20 @@
 <div class="account-wrapper">
 	<div class="account" data-ng-repeat="account in vm.user.accounts">
 		<div class="account-header">
-			<div class="account-name">{{account["name"]}}</div>
+			<div class="account-name">{{account["name"]}}
+				<form class="edit-box" ng-show="showEditBox" ng-submit="vm.updateAccount(account)">
+					<input type="string" ng-model="vm[account.name].goal_date" placeholder="enter note">
+					<button type="submit">submit</button>
+				</form>
+			</div>
 			<div class="goal-and-current">
 				<div class="current">
 					<div>${{account["current_amount"]}}</div>
 				</div>
 				<div class="goal">
-					<p>Goal:</p>
-					<div>${{account["goal_amount"]}}</div>
-					<div class="goal-date">by {{account["goal_date"]}}</div>
+					<div>Goal: ${{account["goal_amount"]}}</div>
+					<div class="goal-date">{{account["goal_date"]}}</div>
+					<button ng-click="showEditBox = !showEditBox">Edit</button>
 				</div>
 			</div>
 		</div>

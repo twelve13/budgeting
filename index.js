@@ -72,6 +72,19 @@ app.post("/api/users/:name/accounts", (req, res) => {
 	});
 });
 
+//edit account
+app.put("/api/users/:name/accounts/:id", (req, res) => {
+	models.User.findOne({name: req.params.name}).then(function(user){
+		let account = user.accounts.find(function(account) {
+			return account.id === req.params.id
+		});
+		account.goal_date = req.body.goal_date;
+		user.save().then(function(user){
+				res.json(user)		
+			});
+	})
+})
+
 //delete account
 //find the user, then the account.  loop through user's accounts to find that account, then splice it out and save the user
 app.delete("/api/users/:name/accounts/:id", (req, res) => {
@@ -84,7 +97,9 @@ app.delete("/api/users/:name/accounts/:id", (req, res) => {
 				user.accounts.splice(i, 1)
 			}
 		}
-		user.current_funds = user.current_funds + account.current_amount;
+		if(account.current_amount){
+			user.current_funds = user.current_funds + account.current_amount;
+		}
 		user.save().then(function(){
 				res.json({success: true})
 		});

@@ -115,7 +115,6 @@ angular
 	function dashboardControllerFunction ($state, $stateParams, UserFactory, AccountFactory, WithdrawalFactory, DepositFactory) {
 
 		this.user = UserFactory.get({name: $stateParams.name});
-		console.log(this.user)
 
 		this.update = function(){
 			this.user.$update({name: $stateParams.name})
@@ -135,6 +134,16 @@ angular
 			})
 		}
 
+		this.updateAccount = function(account) {
+			account.goal_date = this[account.name].goal_date
+			console.log("this user name is")
+			console.log(this.user.name)
+			console.log("account id is")
+			console.log(account._id)
+			this.user.$update({name: this.user.name, account_id: account._id}).then(function() {
+				$state.reload()
+			})
+		}
 
 		this.withdraw = function(account) {
 			let newWithdrawal = new WithdrawalFactory()
@@ -154,12 +163,6 @@ angular
 				$state.reload()
 			})
 		}
-		var test = 100/2;
-		this.meterObj = {
-			"background-color" : "coral",
-			"height": test + "%"
-		}
-
 	}
 	
 
