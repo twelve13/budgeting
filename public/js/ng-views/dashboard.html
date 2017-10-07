@@ -5,7 +5,8 @@
 </div>
 
 <div class="current-funds-display">
-	<div class="summary" ng-init="total = 0">
+	<div ng-click="showSummary = !showSummary">Summary</div>
+	<div class="summary" ng-show="showSummary" ng-init="total = 0">
 		<div data-ng-repeat="account in vm.user.accounts">
 			{{account["name"]}}  :  {{account["current_amount"]}}
 			<div ng-init='$parent.total = $parent.total + account["current_amount"]'></div>
@@ -28,7 +29,7 @@
 <div class="account-wrapper">
 	<div class="account" data-ng-repeat="account in vm.user.accounts">
 		<div class="account-header">
-			<div class="account-name">{{account["name"]}}
+			<div class="account-name" ng-click="showAccount = !showAccount">{{account["name"]}}
 				<form class="edit-box" ng-show="showEditBox" ng-submit="vm.updateAccount(account)">
 					<input type="string" ng-model="vm[account.name].goal_date" placeholder="enter note">
 					<button type="submit">submit</button>
@@ -45,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="new-w-and-d">
+		<div class="new-w-and-d" ng-show="showAccount">
 			<div class="new-d">
 				<p>Deposit</p>
 				<form ng-submit="vm.deposit(account)">
