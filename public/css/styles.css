@@ -202,8 +202,15 @@ input {
 	justify-content: center;
 }
 
-.goal :nth-child(1), .goal :nth-child(2) {
+.goal > div {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	text-align: center;
+	width: 100%;
+}
+
+.goal form {
 	width: 100%;
 }
 
@@ -211,8 +218,12 @@ input {
 	font-size: 80%;
 }
 
-.goal button {
-	margin-bottom: 5px;
+.edit-note {
+	background-image: url("http://simpleicon.com/wp-content/uploads/pen-15-256x256.png");
+	background-size: contain;
+	height: 12px;
+	margin-left: 5px;
+	width: 12px;
 }
 
 .edit-box {
@@ -269,7 +280,13 @@ input {
 
 .account-footer {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
+}
+
+.account-footer * {
+	text-align: right;
+	width: 100%;
 }
 
 .good {

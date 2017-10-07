@@ -29,20 +29,21 @@
 <div class="account-wrapper">
 	<div class="account" data-ng-repeat="account in vm.user.accounts">
 		<div class="account-header">
-			<div class="account-name" ng-click="showAccount = !showAccount">{{account["name"]}}
-				<form class="edit-box" ng-show="showEditBox" ng-submit="vm.updateAccount(account)">
-					<input type="string" ng-model="vm[account.name].goal_date" placeholder="enter note">
-					<button type="submit">submit</button>
-				</form>
-			</div>
+			<div class="account-name" ng-click="showAccount = !showAccount">{{account["name"]}}</div>
 			<div class="goal-and-current">
 				<div class="current">
 					<div>${{account["current_amount"]}}</div>
 				</div>
 				<div class="goal">
 					<div>Goal: ${{account["goal_amount"]}}</div>
-					<div class="goal-date">{{account["goal_date"]}}</div>
-					<button ng-click="showEditBox = !showEditBox">Edit</button>
+					<div>
+						<div class="goal-date">{{account["goal_date"]}}</div>
+						<div class="edit-note" ng-click="showEditBox = !showEditBox"></div>
+						<form class="edit-box" ng-show="showEditBox" ng-submit="vm.updateAccount(account)">
+							<input type="string" ng-model="vm[account.name].goal_date" placeholder="enter note">
+							<button type="submit">submit</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
