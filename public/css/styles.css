@@ -54,7 +54,6 @@ input {
 .nav {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 1%;
 }
 
 .nav * {
@@ -234,10 +233,12 @@ input {
 
 .edit-inner {
 	background-color: #a1ff00;
-	bottom: 12%;
-	height: 15%;
+	bottom: 12.5%;
+	box-sizing: border-box;
+	height: 15.9%;
+	padding-top: 4%;
 	position: relative;
-	width: 150px;
+	width: 170px;
 }
 
 .new-w-and-d {
