@@ -78,6 +78,8 @@ app.put("/api/users/:name/accounts/:id", (req, res) => {
 		let account = user.accounts.find(function(account) {
 			return account.id === req.params.id
 		});
+		account.name = req.body.name;
+		account.goal_amount = req.body.goal_amount;
 		account.goal_date = req.body.goal_date;
 		user.save().then(function(user){
 				res.json(user)		

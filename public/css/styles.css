@@ -211,9 +211,9 @@ input {
 	width: 100%;
 }
 
-.goal form {
+/*.goal form {
 	width: 100%;
-}
+}*/
 
 .goal-date {
 	font-size: 80%;
@@ -222,17 +222,22 @@ input {
 .edit-note {
 	background-image: url("http://simpleicon.com/wp-content/uploads/pen-15-256x256.png");
 	background-size: contain;
-	height: 12px;
+	height: 15px;
 	margin-left: 5px;
-	width: 12px;
+	width: 15px;
 }
 
 .edit-box {
-	display: flex;
+	position: absolute;
+	height: 100%;
 }
 
-.edit-box :nth-child(1) {
-	width: 75%;
+.edit-inner {
+	background-color: #a1ff00;
+	bottom: 12%;
+	height: 15%;
+	position: relative;
+	width: 150px;
 }
 
 .new-w-and-d {
@@ -283,10 +288,11 @@ input {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	margin-top: 3%;
 }
 
-.account-footer * {
-	text-align: right;
+.warning {
+	text-align: center;
 	width: 100%;
 }
 

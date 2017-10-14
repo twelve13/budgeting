@@ -135,11 +135,9 @@ angular
 		}
 
 		this.updateAccount = function(account) {
-			account.goal_date = this[account.name].goal_date
-			console.log("this user name is")
-			console.log(this.user.name)
-			console.log("account id is")
-			console.log(account._id)
+			account.name = this[account].name
+			account.goal_amount = this[account].goal_amount
+			account.goal_date = this[account].goal_date
 			this.user.$update({name: this.user.name, account_id: account._id}).then(function() {
 				$state.reload()
 			})

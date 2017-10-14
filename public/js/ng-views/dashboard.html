@@ -38,10 +38,14 @@
 					<div>Goal: ${{account["goal_amount"]}}</div>
 					<div>
 						<div class="goal-date">{{account["goal_date"]}}</div>
-						<div class="edit-note" ng-click="showEditBox = !showEditBox"></div>
+						
 						<form class="edit-box" ng-show="showEditBox" ng-submit="vm.updateAccount(account)">
-							<input type="string" ng-model="vm[account.name].goal_date" placeholder="enter note">
+							<div class="edit-inner">
+							<input type="string" ng-model="vm[account].name" placeholder="new name">
+							<input type="string" ng-model="vm[account].goal_amount" placeholder="new amount">
+							<input type="string" ng-model="vm[account].goal_date" placeholder="new note">
 							<button type="submit">submit</button>
+						</div>
 						</form>
 					</div>
 				</div>
@@ -66,8 +70,9 @@
 			</div>
 		</div>
 		<div class="account-footer">
-			<div ng-class="account.status">{{account["status"]}}</div>
 			<div><a ui-sref="show({name: vm.user.name, id: account._id})">log</a></div>
+			<div class="edit-note" ng-click="showEditBox = !showEditBox"></div>
+			<div class="warning" ng-class="account.status">{{account["status"]}}</div>
 		</div>
 	</div>
 
